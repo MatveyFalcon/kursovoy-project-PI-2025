@@ -2,24 +2,25 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Логистический оператор — Главная</title>
+    <title>Logistics OS — Управление складом и заказами</title>
+
+    <link rel="stylesheet" href="assets/css/theme.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
 
 <header>
     <div class="header-inner">
-        <h1>Логистический оператор</h1>
+        <h1>LOGISTICS OS</h1>
+
         <nav>
-            <a href="index.html">Главная</a>
-            <a href="login.html" id="nav-login">Вход</a>
-            <a href="register.html" id="nav-register">Регистрация</a>
-            <a href="warehouse.html" id="nav-warehouse">Склад</a>
-            <a href="orders.html" id="nav-orders">Заказы</a>
+            <a href="index.html" class="nav-link active">Главная</a>
+            <a href="login.html" class="nav-link">Вход</a>
+            <a href="register.html" class="nav-link">Регистрация</a>
         </nav>
 
-        <div class="user-panel" id="userPanel">
+        <div id="userPanel" class="user-panel" style="display:none;">
             <span id="userLabel"></span>
             <button id="logoutBtn">Выйти</button>
         </div>
@@ -27,15 +28,61 @@
 </header>
 
 <main>
-    <h2>Добро пожаловать!</h2>
-    <p>Это MVP веб-системы логистического оператора.</p>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h2 class="hero-title">Logistics OS</h2>
+
+        <p class="hero-subtitle">
+            Современная система для управления складской инфраструктурой, заказами
+            и взаимодействием с клиентами.
+        </p>
+
+        <div class="hero-actions">
+            <a href="login.html" class="btn btn-primary">Войти в систему</a>
+            <a href="register.html" class="btn btn-secondary">Создать аккаунт</a>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="features">
+        <h2 class="section-title">Основные возможности</h2>
+
+        <p class="section-description">
+            Платформа объединяет инструменты WMS, TMS и клиентского сервиса.
+            Интерфейс выполнен в строгом корпоративном стиле для удобной ежедневной работы.
+        </p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3 class="feature-title">Управление складом</h3>
+                <p class="feature-text">
+                    Структура зон, ячеек и операций. Оптимизированный интерфейс для сотрудников склада.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3 class="feature-title">Личный кабинет клиента</h3>
+                <p class="feature-text">
+                    Размещение заказов, отслеживание и взаимодействие с логистическим оператором.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3 class="feature-title">История операций</h3>
+                <p class="feature-text">
+                    Полная прозрачность: все события фиксируются и доступны для анализа.
+                </p>
+            </div>
+        </div>
+    </section>
+
 </main>
 
 <footer>
-    <p>© 2025 Логистический оператор</p>
+    © 2025 Logistics OS. Все права защищены.
 </footer>
 
 <script src="assets/js/app.js"></script>
-
 </body>
 </html>

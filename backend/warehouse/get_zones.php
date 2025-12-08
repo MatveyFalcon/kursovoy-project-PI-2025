@@ -1,21 +1,19 @@
 <?php
-require_once "../cors.php";
-require_once "../db.php";
+require_once __DIR__ . "/../cors.php";
+require_once __DIR__ . "/../db.php";
 
-header('Content-Type: application/json');
+header("Content-Type: application/json; charset=utf-8");
 
-// Переключаемся на базу склада
 $mysql->select_db("warehouse_service");
 
-// Получаем зоны
-$result = $mysql->query("SELECT zone_id, name, description FROM zones ORDER BY zone_id");
+$sql = "SELECT zone_id, name FROM zones ORDER BY zone_id";
+$res = $mysql->query($sql);
 
 $zones = [];
-while ($row = $result->fetch_assoc()) {
-    $zones[] = $row;
+if ($res) {
+    while ($row = $res->fetch_assoc()) {
+        $zones[] = $row;
+    }
 }
 
-echo json_encode([
-    "message" => "ok",
-    "zones" => $zones
-]);
+echo json_encode(["zones" => $zones]);

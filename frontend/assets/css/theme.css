@@ -1,0 +1,75 @@
+/* ==========================================
+   Logistics OS — THEME TOKENS (v2)
+   Новый дизайн-движок уровня Linear / Stripe
+========================================== */
+
+:root {
+    /* ===== ГЛУБОКИЙ ФОН ===== */
+    --bg-body: #020617;      /* Космическая глубина */
+    --bg-surface: #0b1120;   /* Стеклянная панель */
+    --bg-panel: rgba(15,23,42,0.85);
+    --bg-panel-solid: #0f172a;
+
+    /* ===== GLASS / BLUR ===== */
+    --glass-strong: rgba(15, 23, 42, 0.75);
+    --glass-medium: rgba(15, 23, 42, 0.55);
+    --glass-light: rgba(255, 255, 255, 0.04);
+    --blur-xl: blur(22px);
+    --blur-md: blur(14px);
+
+    /* ===== ТЕКСТ ===== */
+    --text-main: #e2e8f0;
+    --text-soft: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-faint: #64748b;
+
+    /* ===== АКЦЕНТЫ НЕОНА ===== */
+    --accent: #38bdf8;          /* Cyber Blue */
+    --accent-strong: #0ea5e9;   /* Neon Edge */
+    --accent-glow: rgba(56,189,248,0.55);
+
+    /* ===== СТАТУСЫ ===== */
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --danger: #f87171;
+
+    /* ===== КНОПКИ ===== */
+    --btn-radius: 999px;
+    --btn-padding: 11px 18px;
+
+    /* ===== BORERS ===== */
+    --border-subtle: rgba(148,163,184,0.28);
+    --border-strong: rgba(148,163,184,0.55);
+
+    /* ===== ТЕНИ ===== */
+    --shadow-soft: 0 12px 36px rgba(0,0,0,0.55);
+    --shadow-strong: 0 16px 48px rgba(0,0,0,0.75);
+    --shadow-accent: 0 0 22px rgba(56,189,248,0.45);
+
+    /* ===== РАДИУСЫ ===== */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+
+    /* ===== ТИПОГРАФИКА ===== */
+    --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --fs-xs: 12px;
+    --fs-sm: 14px;
+    --fs-md: 16px;
+    --fs-lg: 18px;
+    --fs-xl: 26px;
+    --fs-xxl: 34px;
+
+    /* ===== АНИМАЦИИ ===== */
+    --anim-fast: 0.15s ease;
+    --anim-mid: 0.25s ease;
+    --anim-slow: 0.4s ease;
+
+    /* ===== СИСТЕМА ОТСТУПОВ ===== */
+    --gap-xs: 6px;
+    --gap-sm: 10px;
+    --gap-md: 16px;
+    --gap-lg: 24px;
+    --gap-xl: 34px;
+}

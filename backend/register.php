@@ -2,20 +2,23 @@
 require_once "cors.php";
 require_once "db.php";
 
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
 
 $data = json_decode(file_get_contents("php://input"), true);
 
 $fullName = $data["fullName"] ?? "";
-$phone = $data["phone"] ?? "";
-$email = $data["email"] ?? "";
-$login = $data["login"] ?? "";
+$phone    = $data["phone"] ?? "";
+$email    = $data["email"] ?? "";
+$login    = $data["login"] ?? "";
 $password = $data["password"] ?? "";
 
 if (!$fullName || !$phone || !$email || !$login || !$password) {
     echo json_encode(["message" => "Заполните все поля"]);
     exit;
 }
+
+$mysql->select_db("auth_service");
 
 $password_hash = password_hash($password, PASSWORD_DEFAULT);
 

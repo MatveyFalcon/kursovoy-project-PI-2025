@@ -1,199 +1,384 @@
-/* ============================
-   БАЗОВЫЕ СТИЛИ
-============================ */
-:root {
-    --bg: #f7f9fc;
-    --card-bg: #ffffff;
-    --text: #1e1e1e;
-    --text-light: #5c5c5c;
-    --primary: #3a6df0;
-    --primary-hover: #2f57c6;
-    --border: #e2e8f0;
-    --radius: 10px;
-    --shadow: 0 4px 18px rgba(0,0,0,0.06);
-}
+@import url('theme.css');
+
+/* ===========================================================
+   BASE LAYOUT
+=========================================================== */
 
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background: var(--bg);
-    font-family: "Inter", Arial, sans-serif;
-    color: var(--text);
-    display: flex;
-    flex-direction: column;
 }
 
-/* ============================
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(56,189,248,0.12), transparent 55%),
+        radial-gradient(circle at 80% 80%, rgba(139,92,246,0.10), transparent 60%),
+        var(--bg-body);
+    background-attachment: fixed;
+
+    font-family: var(--font-sans);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* Utility */
+.hidden {
+    display: none !important;
+}
+
+/* ===========================================================
    HEADER
-============================ */
+=========================================================== */
+
 header {
-    background: #ffffff;
-    border-bottom: 1px solid var(--border);
-    padding: 12px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    padding: 12px 26px;
+    background: rgba(11,17,32,0.92);
+    backdrop-filter: var(--blur-md);
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 .header-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-
+    max-width: 1180px;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 header h1 {
-    margin: 0;
-    font-size: 20px;
+    font-size: var(--fs-lg);
+    letter-spacing: 0.06em;
     font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-main);
+}
+
+/* NAVIGATION */
+header nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 header nav a {
-    margin-right: 20px;
-    text-decoration: none;
-    color: var(--text-light);
-    font-weight: 500;
-    transition: 0.2s;
+    padding: 6px 14px;
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+    border-radius: 999px;
+    transition: var(--anim-fast);
 }
-
 header nav a:hover {
-    color: var(--primary);
+    background: rgba(255,255,255,0.05);
+    color: var(--accent);
 }
 
-/* ============================
-   USER PANEL (выйти)
-============================ */
+/* USER PANEL */
 .user-panel {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
-.user-panel button {
+#userLabel {
+    font-size: var(--fs-sm);
+    color: var(--text-soft);
+}
+
+#logoutBtn {
     padding: 6px 14px;
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius);
+    border-radius: 999px;
+    font-size: var(--fs-xs);
     cursor: pointer;
-    font-weight: 500;
-    transition: 0.2s;
+    background: rgba(15,23,42,0.85);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-soft);
+    transition: var(--anim-fast);
 }
 
-.user-panel button:hover {
-    background: var(--primary-hover);
+#logoutBtn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
 }
 
-/* ============================
-   MAIN
-============================ */
+/* ===========================================================
+   MAIN + FOOTER
+=========================================================== */
+
 main {
     flex: 1;
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 0 20px;
+    max-width: 1180px;
+    width: 100%;
+    margin: 36px auto;
+    padding: 0 24px;
 }
 
-/* ============================
-   FOOTER
-============================ */
 footer {
-    text-align: center;
+    background: rgba(15,23,42,0.95);
+    border-top: 1px solid var(--border-subtle);
+    color: var(--text-muted);
     padding: 12px;
-    background: #ffffff;
-    border-top: 1px solid var(--border);
-    font-size: 14px;
-    color: var(--text-light);
+    text-align: center;
+    font-size: var(--fs-xs);
 }
 
-/* ============================
-   АВТОРИЗАЦИЯ (КАРТОЧКА)
-============================ */
+/* ===========================================================
+   HERO BLOCK / CARD
+=========================================================== */
+
+.hero {
+    padding: 32px 30px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-panel-solid);
+    border: 1px solid var(--border-subtle);
+    backdrop-filter: var(--blur-md);
+    box-shadow: var(--shadow-soft);
+}
+
+.hero-title {
+    font-size: var(--fs-xxl);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hero-subtitle {
+    color: var(--text-muted);
+    font-size: var(--fs-md);
+    margin-bottom: 20px;
+}
+
+/* ===========================================================
+   BUTTONS (Stripe Grade)
+=========================================================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--btn-padding);
+    border-radius: var(--btn-radius);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: var(--anim-fast);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    color: white;
+    border-color: rgba(56,189,248,0.55);
+    box-shadow: var(--shadow-accent);
+}
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 22px 44px rgba(56,189,248,0.65);
+}
+
+.btn-secondary {
+    background: rgba(15,23,42,0.7);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-soft);
+}
+.btn-secondary:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.btn-danger {
+    background: rgba(248,113,113,0.12);
+    border-color: rgba(248,113,113,0.45);
+    color: #fca5a5;
+}
+.btn-danger:hover {
+    background: rgba(248,113,113,0.2);
+}
+
+/* ===========================================================
+   AUTH FORMS
+=========================================================== */
+
 .auth-container {
     max-width: 420px;
-
-    /* Центрирование по вертикали и горизонтали */
-    margin: auto;
-    margin-top: 80px;
-    margin-bottom: 80px;
-
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    padding: 30px;
-    box-shadow: var(--shadow);
-
-    /* Главное исправление */
-    flex: 0 0 auto; 
+    margin: 90px auto;
+    padding: 34px 32px;
+    background: var(--bg-panel);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-medium);
 }
 
 .auth-container h2 {
-    margin-bottom: 20px;
     text-align: center;
-    font-size: 22px;
-    font-weight: 600;
+    font-size: var(--fs-xl);
+    margin-bottom: 22px;
 }
 
 .auth-container form {
     display: flex;
     flex-direction: column;
+    gap: var(--gap-sm);
 }
 
 .auth-container label {
-    font-size: 14px;
-    margin-bottom: 6px;
-    color: var(--text-light);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    color: var(--text-muted);
 }
 
 .auth-container input {
-    padding: 12px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    margin-bottom: 18px;
-    font-size: 15px;
-    outline: none;
-    transition: 0.2s;
+    padding: 11px;
+    background: rgba(15,23,42,0.97);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-main);
+}
+.auth-container input:focus {
+    border-color: var(--accent);
+    background: #020617;
+    box-shadow: 0 0 8px rgba(56,189,248,0.4);
 }
 
-.auth-container input:focus {
-    border-color: var(--primary);
+/* ==============================
+   INDEX PAGE STYLES
+============================== */
+
+.section-title {
+    font-size: var(--fs-xl);
+    font-weight: 600;
+    margin-bottom: var(--gap-sm);
+}
+
+.section-description {
+    color: var(--text-muted);
+    font-size: var(--fs-md);
+    max-width: 700px;
+    margin-bottom: var(--gap-lg);
+}
+
+.hero-actions {
+    display: flex;
+    gap: var(--gap-md);
+    margin-top: var(--gap-md);
+}
+
+/* FEATURES GRID */
+
+.features {
+    margin-top: 40px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--gap-lg);
+    margin-top: var(--gap-md);
+}
+
+.feature-card {
+    background: var(--bg-panel);
+    padding: 22px 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-soft);
+}
+
+.feature-title {
+    font-size: var(--fs-lg);
+    margin-bottom: var(--gap-xs);
+}
+
+.feature-text {
+    color: var(--text-muted);
+    font-size: var(--fs-sm);
+}
+
+/* ===========================================================
+   GLOBAL TUNING — Linear-level refinement
+=========================================================== */
+
+/* Контейнеры — единая ширина */
+.main, main {
+    max-width: 1100px;
+    width: 100%;
+    margin: 40px auto;
+    padding: 0 24px;
+}
+
+/* Линки */
+.nav-link.active {
+    color: var(--accent);
+}
+
+/* Унификация секционных заголовков */
+h2, .section-title {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+/* Карточная структура */
+.card {
+    background: var(--bg-panel);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    padding: 24px;
+}
+
+/* Minor text */
+.text-muted {
+    color: var(--text-muted);
+}
+
+/* Кнопки — единая высота */
+button, .btn {
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Формы — улучшенный UX */
+input, select {
+    font-size: var(--fs-sm);
+}
+
+input::placeholder {
+    color: var(--text-faint);
+}
+
+/* Улучшение hover-эффекта */
+.styled-table tr:hover td {
+    background: rgba(255,255,255,0.04);
+}
+
+/* AUTH — alignment improvement */
+.auth-container {
+    max-width: 360px;
+    margin: 60px auto;
+    padding: 28px 26px;
+
+    background: var(--bg-panel);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-soft);
+}
+
+
+.auth-container label {
+    margin-bottom: 4px;
+}
+
+.auth-container input {
+    height: 42px;
+    padding-left: 12px;
 }
 
 .auth-container button {
-    padding: 12px;
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    transition: 0.2s;
-}
-
-.auth-container button:hover {
-    background: var(--primary-hover);
-}
-
-.auth-container p {
-    text-align: center;
-    margin-top: 15px;
-}
-
-.auth-container a {
-    color: var(--primary);
-    text-decoration: none;
-}
-
-.auth-container a:hover {
-    text-decoration: underline;
-}
-
-
-/* ============================
-   АДАПТИВ
-============================ */
-@media (max-width: 600px) {
-    header nav {
-        display: none;
-    }
+    margin-top: 12px;
+    height: 42px;
 }

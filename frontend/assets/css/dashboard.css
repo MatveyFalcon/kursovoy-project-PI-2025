@@ -1,0 +1,107 @@
+@import url("theme.css");
+
+/* DASHBOARD WRAPPER */
+.dashboard-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* GREETING BLOCK */
+.dashboard-greeting {
+    background: var(--bg-panel);
+    padding: 28px 26px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+}
+
+.dashboard-greeting h2 {
+    font-size: var(--fs-xl);
+    margin-bottom: 6px;
+}
+
+/* SECTION TITLE */
+.section-title {
+    font-size: var(--fs-lg);
+    margin-bottom: 12px;
+}
+
+/* ===== QUICK ACTION CARDS ===== */
+
+.actions-grid {
+    display: grid;
+    gap: 22px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.action-card {
+    display: block;
+    background: var(--bg-panel);
+    padding: 22px 20px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    text-decoration: none;
+    color: var(--text-main);
+    transition: var(--anim-fast);
+}
+
+.action-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.action-card h4 {
+    font-size: var(--fs-md);
+    margin-bottom: 6px;
+}
+
+.action-card p {
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+}
+
+/* ===== KPI CARDS ===== */
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 22px;
+}
+
+.kpi-card {
+    background: var(--bg-panel);
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.kpi-label {
+    font-size: var(--fs-xs);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.kpi-value {
+    font-size: var(--fs-xl);
+    font-weight: 600;
+}
+
+/* Align actions-card content */
+.action-card {
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* KPI spacing */
+.kpi-card {
+    padding: 22px 20px;
+}

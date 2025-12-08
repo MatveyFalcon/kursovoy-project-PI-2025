@@ -1,89 +1,69 @@
-console.log("warehouse.js подключён");
+console.log("warehouse.js loaded");
 
-// Проверяем роль
-document.addEventListener("DOMContentLoaded", () => {
-    const userType = localStorage.getItem("userType");
 
-    const accessDenied = document.getElementById("accessDenied");
-    const warehouseContainer = document.getElementById("warehouseContainer");
-
-    if (userType !== "employee") {
-        accessDenied.classList.remove("hidden");
-        warehouseContainer.classList.add("hidden");
-        return;
-    }
-
-    // Показываем склад
-    accessDenied.classList.add("hidden");
-    warehouseContainer.classList.remove("hidden");
-
-    loadZones();
-    loadCells();
-});
-
-function loadZones() {
-    fetch("http://localhost:8000/warehouse/get_zones.php")
-        .then(r => r.json())
-        .then(data => {
-            const tbody = document.getElementById("zonesBody");
-
-            if (!data.zones || data.zones.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="3">Зон пока нет</td></tr>`;
-                return;
-            }
-
-            let html = "";
-            data.zones.forEach(z => {
-                html += `
-                    <tr>
-                        <td>${z.zone_id}</td>
-                        <td>${z.name}</td>
-                        <td>${z.description ?? ""}</td>
-                    </tr>
-                `;
-            });
-
-            tbody.innerHTML = html;
-        })
-        .catch(() => {
-            document.getElementById("zonesBody").innerHTML =
-                `<tr><td colspan="3">Ошибка загрузки</td></tr>`;
-        });
-}
-
+/* ============================
+   LOAD CELLS
+============================ */
 function loadCells() {
-    fetch("http://localhost:8000/warehouse/get_cells.php")
-        .then(r => r.json())
+    fetch(`${API_BASE}/warehouse/get_cells.php`)
+        .then(res => res.json())
         .then(data => {
-            const tbody = document.getElementById("cellsBody");
+            const body = document.getElementById("cellsTableBody");
+            body.innerHTML = "";
 
-            if (!data.cells || data.cells.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6">Ячеек пока нет</td></tr>`;
-                return;
-            }
-
-            let html = "";
             data.cells.forEach(c => {
-                html += `
+                body.innerHTML += `
                     <tr>
                         <td>${c.cell_id}</td>
                         <td>${c.cell_code}</td>
                         <td>${c.zone_name}</td>
                         <td>${c.max_volume}</td>
                         <td>${c.max_weight}</td>
-                        <td>
-                            <button class="primary-btn small-btn">Редактировать</button>
-                            <button class="danger-btn small-btn">Удалить</button>
-                        </td>
                     </tr>
                 `;
             });
-
-            tbody.innerHTML = html;
         })
-        .catch(() => {
-            document.getElementById("cellsBody").innerHTML =
-                `<tr><td colspan="6">Ошибка загрузки</td></tr>`;
+        .catch(err => console.error("Load cells error:", err));
+}
+
+/* ============================
+   MODAL ADD CELL
+============================ */
+const modal = document.getElementById("modalAddCell");
+const addCellBtn = document.getElementById("addCellBtn");
+const closeModalBtn = document.getElementById("closeModalBtn");
+
+if (addCellBtn) {
+    addCellBtn.onclick = () => {
+        fillZonesSelect();
+        modal.classList.add("show");
+        modal.classList.remove("hidden");
+    };
+}
+
+if (closeModalBtn) {
+    closeModalBtn.onclick = () => {
+        modal.classList.add("hidden");
+        modal.classList.remove("show");
+    };
+}
+
+/* LOAD ZONES INTO SELECT */
+function fillZonesSelect() {
+    fetch(`${API_BASE}/warehouse/get_zones.php`)
+        .then(r => r.json())
+        .then(data => {
+            const select = document.getElementById("modalZone");
+            select.innerHTML = "";
+            data.zones.forEach(z => {
+                select.innerHTML += `<option value="${z.zone_id}">${z.name}</option>`;
+            });
         });
 }
 
+/* ============================
+   INIT
+============================ */
+document.addEventListener("DOMContentLoaded", () => {
+    loadCells();
+});
