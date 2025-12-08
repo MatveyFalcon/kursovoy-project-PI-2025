@@ -31,3 +31,34 @@ footer {
     padding: 10px;
     text-align: center;
 }
+
+.auth-container {
+    max-width: 400px;
+    margin: 60px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-container input {
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.auth-container button {
+    padding: 10px;
+    background: #222;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.auth-container button:hover {
+    background: #444;
+}
