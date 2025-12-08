@@ -3,35 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Логистический оператор — Склад</title>
-
-    <!-- Подключаем стили -->
+    <title>Логистический оператор — Главная</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-    <header>
+<header>
+    <div class="header-inner">
         <h1>Логистический оператор</h1>
         <nav>
             <a href="index.html">Главная</a>
-            <a href="login.html">Вход</a>
-            <a href="register.html">Регистрация</a>
+            <a href="login.html" id="nav-login">Вход</a>
+            <a href="register.html" id="nav-register">Регистрация</a>
             <a href="warehouse.html">Склад</a>
             <a href="orders.html">Заказы</a>
         </nav>
-    </header>
 
-    <main>
-        <h2>Добро пожаловать!</h2>
-        <p>Это MVP веб-системы логистического оператора.</p>
-        <p>Выберите действие в меню.</p>
-    </main>
+        <div class="user-panel" id="userPanel">
+            <span id="userLabel"></span>
+            <button id="logoutBtn">Выйти</button>
+        </div>
+    </div>
+</header>
 
-    <footer>
-        <p>© 2025 Логистический оператор</p>
-    </footer>
+<main>
+    <h2>Добро пожаловать!</h2>
+    <p>Это MVP веб-системы логистического оператора.</p>
+</main>
 
-    <!-- Подключаем JS -->
-    <script src="assets/js/app.js"></script>
+<footer>
+    <p>© 2025 Логистический оператор</p>
+</footer>
+
+<script src="assets/js/app.js"></script>
+
 </body>
 </html>
