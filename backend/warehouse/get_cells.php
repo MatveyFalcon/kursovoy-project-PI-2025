@@ -12,6 +12,7 @@ $sql = "
         c.cell_code,
         c.max_volume,
         c.max_weight,
+        c.description,
         z.name AS zone_name
     FROM cells c
     LEFT JOIN zones z ON z.zone_id = c.zone_id
