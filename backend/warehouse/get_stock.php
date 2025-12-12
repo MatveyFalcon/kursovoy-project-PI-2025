@@ -7,17 +7,18 @@ header("Content-Type: application/json; charset=utf-8");
 $mysql->select_db("warehouse_service");
 
 $sql = "
-    SELECT
-        s.stock_id,
-        s.quantity,
-        c.cell_code,
-        p.name AS product_name,
-        p.sku
-    FROM stock s
-    JOIN cells c ON c.cell_id = s.cell_id
-    JOIN products p ON p.product_id = s.product_id
-    ORDER BY c.cell_code, p.name
+  SELECT
+    s.stock_id,
+    s.quantity,
+    c.cell_code,
+    p.name AS product_name,
+    p.sku AS product_sku
+  FROM stock s
+  JOIN cells c ON c.cell_id = s.cell_id
+  JOIN products p ON p.product_id = s.product_id
+  ORDER BY s.stock_id DESC
 ";
+
 
 $res = $mysql->query($sql);
 

@@ -59,6 +59,7 @@
         <button class="subnav-btn active" data-section="cells">Ячейки</button>
         <button class="subnav-btn" data-section="zones">Зоны</button>
         <button class="subnav-btn" data-section="products">Товары</button>
+        <button class="subnav-btn" data-section="stock">Остатки</button>
       </section>
 
       <!-- CELLS SECTION -->
@@ -122,6 +123,32 @@
       <!-- PRODUCTS SECTION -->
       <section id="section-products" class="warehouse-section">
         <p class="placeholder-text">Здесь позже будет управление товарами.</p>
+      </section>
+
+      <section id="section-stock" class="warehouse-section">
+        <div class="section-toolbar">
+          <button id="addStockBtn" class="btn btn-primary">
+            Добавить остаток
+          </button>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Ячейка</th>
+                <th>Товар</th>
+                <th>SKU</th>
+                <th>Количество</th>
+              </tr>
+            </thead>
+            <tbody id="stockTableBody">
+              <tr>
+                <td colspan="4" style="text-align: center">Загрузка...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
     </main>
 
@@ -223,6 +250,26 @@
         <div class="modal-actions">
           <button class="btn btn-secondary" id="closeEditZone">Отмена</button>
           <button class="btn btn-primary" id="saveEditZone">Сохранить</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalAddStock">
+      <div class="modal-content">
+        <h3>Добавить остаток</h3>
+
+        <label>Ячейка</label>
+        <select id="stockCell"></select>
+
+        <label>Товар</label>
+        <select id="stockProduct"></select>
+
+        <label>Количество</label>
+        <input type="number" id="stockQty" step="0.001" />
+
+        <div class="modal-actions">
+          <button class="btn btn-secondary" id="closeStockModal">Отмена</button>
+          <button class="btn btn-primary" id="createStockBtn">Добавить</button>
         </div>
       </div>
     </div>
