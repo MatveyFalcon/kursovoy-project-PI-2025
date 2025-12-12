@@ -1,0 +1,1121 @@
+/* ===================================================================
+   LOGISTICS OS — ENTERPRISE UI
+   One-file CSS for ALL pages
+   - Mobile-first
+   - Reset + tokens + components + pages
+   - Works with legacy JS (modals/tabs)
+   - No class/id changes required
+=================================================================== */
+
+/* =========================
+   1) RESET / NORMALIZE
+========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(79, 140, 255, 0.62);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+/* =========================
+   2) TOKENS / THEME
+   (Premium enterprise dark)
+========================= */
+:root {
+  /* Surfaces */
+  --bg: #0b0e12;
+  --surface-0: #0f141b;
+  --surface-1: #121a24;
+  --surface-2: #172233;
+  --surface-3: #1b2a40;
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --border-accent: rgba(79, 140, 255, 0.32);
+
+  /* Text */
+  --text: rgba(255, 255, 255, 0.96);
+  --text-2: rgba(255, 255, 255, 0.82);
+  --text-3: rgba(255, 255, 255, 0.58);
+
+  /* Accent */
+  --accent: #4f8cff;
+  --accent-2: #2f6fe6;
+  --accent-glow: rgba(79, 140, 255, 0.4);
+
+  /* Status */
+  --danger: #ff5a6a;
+  --danger-2: #ff3d51;
+  --ok: #31d0aa;
+  --warn: #ffcc66;
+
+  /* Radius */
+  --r-1: 10px;
+  --r-2: 14px;
+  --r-3: 18px;
+
+  /* Shadow */
+  --sh-1: 0 14px 40px rgba(0, 0, 0, 0.4);
+  --sh-2: 0 24px 70px rgba(0, 0, 0, 0.55);
+
+  /* Spacing scale */
+  --s-1: 6px;
+  --s-2: 10px;
+  --s-3: 14px;
+  --s-4: 18px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 40px;
+  --s-8: 56px;
+
+  /* Type */
+  --font: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
+
+  --fs-1: 0.8125rem; /* 13 */
+  --fs-2: 0.875rem; /* 14 */
+  --fs-3: 0.9375rem; /* 15 */
+  --fs-4: 1rem; /* 16 */
+  --fs-5: 1.125rem; /* 18 */
+  --fs-6: 1.375rem; /* 22 */
+  --fs-7: 1.75rem; /* 28 */
+  --fs-8: 2.25rem; /* 36 */
+
+  --lh-tight: 1.18;
+  --lh: 1.5;
+
+  /* Layout */
+  --container: 1200px;
+}
+
+/* =========================
+   3) BASE / LAYOUT
+   (Sticky footer + premium bg)
+========================= */
+html,
+body {
+  height: 100%;
+}
+
+body.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  font-family: var(--font);
+  color: var(--text);
+  line-height: var(--lh);
+
+  background: radial-gradient(
+      1200px 600px at 18% -10%,
+      rgba(79, 140, 255, 0.14),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 520px at 85% 0%,
+      rgba(49, 208, 170, 0.06),
+      transparent 55%
+    ),
+    radial-gradient(
+      800px 500px at 50% 120%,
+      rgba(255, 204, 102, 0.05),
+      transparent 60%
+    ),
+    var(--bg);
+}
+
+.app-main {
+  padding: var(--s-7) 0;
+  flex: 1 0 auto;
+}
+
+.layout-container {
+  width: 100%;
+  max-width: var(--container);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--s-5);
+  padding-right: var(--s-5);
+}
+
+/* Skip link */
+.ui-skip {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  z-index: 999;
+}
+.ui-skip:focus {
+  left: 12px;
+}
+
+/* Links */
+.ui-link {
+  color: rgba(79, 140, 255, 0.98);
+  text-decoration: none;
+}
+.ui-link:hover {
+  color: rgba(169, 198, 255, 1);
+  text-decoration: underline;
+}
+
+.ui-accent {
+  color: rgba(79, 140, 255, 0.98);
+}
+
+/* =========================
+   4) HEADER / NAV / FOOTER
+========================= */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  background: rgba(15, 20, 27, 0.78);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+  padding: var(--s-4) 0;
+  padding-top: var(--s-4);
+  padding-bottom: calc(var(--s-4) + 12px);
+}
+
+.ui-brand {
+  margin: 0;
+  font-size: var(--fs-2);
+  letter-spacing: 0.16em;
+}
+.ui-brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+}
+.ui-brand-link::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(79, 140, 255, 0.18);
+}
+
+.ui-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.nav-link {
+  font-size: var(--fs-2);
+  color: var(--text-2);
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.nav-link:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border);
+}
+.nav-link.active {
+  color: var(--text);
+  background: rgba(79, 140, 255, 0.12);
+  border-color: var(--border-accent);
+}
+
+/* User panel */
+.user-panel {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+.ui-user-label {
+  font-size: var(--fs-2);
+  color: var(--text-2);
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Footer */
+.app-footer {
+  border-top: 1px solid var(--border);
+  color: var(--text-3);
+  font-size: var(--fs-2);
+  padding: var(--s-6) 0;
+  flex-shrink: 0;
+}
+
+/* =========================
+   5) TYPOGRAPHY
+========================= */
+.hero-title,
+.ui-page-title {
+  margin: 0 0 var(--s-2);
+  letter-spacing: -0.02em;
+  line-height: var(--lh-tight);
+}
+
+.ui-page-title {
+  font-size: var(--fs-7);
+  font-weight: 700;
+}
+.hero-title {
+  font-size: var(--fs-8);
+  font-weight: 760;
+}
+
+.hero-subtitle,
+.ui-page-subtitle,
+.section-description,
+.ui-block-hint {
+  margin: 0;
+  color: var(--text-2);
+}
+
+.ui-page-subtitle {
+  font-size: var(--fs-3);
+  max-width: 72ch;
+}
+.hero-subtitle {
+  font-size: var(--fs-5);
+  max-width: 72ch;
+}
+
+.section-title {
+  margin: 0;
+  font-size: var(--fs-6);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.ui-block-hint {
+  font-size: var(--fs-2);
+}
+
+/* =========================
+   6) SURFACES / CARDS / BLOCKS
+========================= */
+.ui-card,
+.ui-block,
+.ui-panel {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.07),
+    rgba(255, 255, 255, 0.025)
+  );
+  border: 1px solid var(--border);
+  border-radius: var(--r-2);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 12px 40px rgba(0, 0, 0, 0.22);
+}
+
+.ui-card {
+  padding: var(--s-6);
+}
+.ui-block {
+  padding: var(--s-6);
+}
+.ui-panel {
+  padding: var(--s-6);
+}
+
+.ui-section {
+  padding: var(--s-8) 0;
+}
+.ui-section-head {
+  margin-bottom: var(--s-5);
+}
+
+.ui-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-6);
+}
+
+.ui-page-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s-4);
+}
+.ui-page-head-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.ui-block-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  margin-bottom: var(--s-4);
+}
+
+/* =========================
+   7) GRIDS
+========================= */
+.ui-grid-3,
+.ui-actions-grid,
+.ui-kpi-grid {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.ui-grid-3 {
+  grid-template-columns: 1fr;
+}
+.ui-actions-grid {
+  grid-template-columns: 1fr;
+}
+.ui-kpi-grid {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .ui-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .ui-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ui-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .ui-actions-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .ui-kpi-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* =========================
+   8) HERO
+========================= */
+.ui-hero {
+  padding: var(--s-8) 0 var(--s-7);
+}
+.ui-hero-inner {
+  display: grid;
+  gap: var(--s-6);
+  align-items: start;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 960px) {
+  .ui-hero-inner {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+.ui-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+}
+
+.ui-panel-title {
+  margin: 0 0 var(--s-2);
+  font-size: var(--fs-6);
+  font-weight: 700;
+}
+.ui-panel-text {
+  margin: 0 0 var(--s-4);
+  color: var(--text-2);
+  font-size: var(--fs-3);
+}
+
+.ui-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  color: var(--text-2);
+  font-size: var(--fs-2);
+}
+.ui-list li {
+  line-height: 1.45;
+}
+
+/* =========================
+   9) BUTTONS (GLOBAL)
+========================= */
+.btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  padding: 11px 14px;
+  font-size: var(--fs-2);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  transition: transform 0.12s ease, background 0.16s ease,
+    border-color 0.16s ease, box-shadow 0.16s ease, color 0.16s ease,
+    filter 0.16s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #5f98ff 0%, #3d73e8 100%);
+  color: #06080c;
+  border-color: transparent;
+  box-shadow: 0 14px 34px rgba(79, 140, 255, 0.45),
+    0 1px 0 rgba(255, 255, 255, 0.4) inset;
+}
+.btn-primary:hover {
+  box-shadow: 0 20px 50px rgba(79, 140, 255, 0.55),
+    0 1px 0 rgba(255, 255, 255, 0.5) inset;
+}
+
+.btn-secondary {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.04)
+  );
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+}
+.btn-secondary:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.14),
+    rgba(255, 255, 255, 0.06)
+  );
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+/* Danger button variant (used automatically for Delete in tables) */
+.btn-danger {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 90, 106, 0.18),
+    rgba(255, 90, 106, 0.1)
+  );
+  color: rgba(255, 255, 255, 0.96);
+  border-color: rgba(255, 90, 106, 0.32);
+}
+.btn-danger:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 90, 106, 0.26),
+    rgba(255, 90, 106, 0.12)
+  );
+  border-color: rgba(255, 90, 106, 0.46);
+  box-shadow: 0 18px 44px rgba(255, 90, 106, 0.14);
+}
+
+.btn[disabled],
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  filter: grayscale(0.25);
+}
+
+.ui-btn-wide {
+  width: 100%;
+}
+
+/* =========================
+   9.1) TABLE ACTION BUTTONS (FIX: Delete readability)
+   Works even if buttons are created by JS without extra classes
+========================= */
+
+/* Any button inside table cells becomes compact */
+.ui-table td .btn,
+.styled-table td .btn {
+  min-height: 34px;
+  padding: 7px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: var(--fs-1);
+}
+
+/* If JS outputs plain <button> without .btn class inside table */
+.ui-table td button,
+.styled-table td button {
+  border-radius: 12px;
+  padding: 7px 10px;
+  min-height: 34px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease,
+    box-shadow 0.16s ease, transform 0.12s ease;
+}
+
+/* Hover for generic buttons */
+.ui-table td button:hover,
+.styled-table td button:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--border-strong);
+}
+
+/* Detect "delete" buttons by common keywords (works if JS sets text) */
+.ui-table td button[id*="del" i],
+.ui-table td button[class*="del" i],
+.ui-table td button[aria-label*="удал" i],
+.ui-table td button[title*="удал" i],
+.ui-table td button:where(:not([type])):is(:contains("Удалить")) {
+  /* NOTE: :contains not supported in CSS – ignore; kept harmless */
+}
+
+/* Practical + reliable: style last action button in a cell group as danger
+   (common pattern: [Edit] [Delete]) */
+.ui-table td:last-child button:last-child,
+.styled-table td:last-child button:last-child {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 90, 106, 0.22),
+    rgba(255, 90, 106, 0.12)
+  );
+  border-color: rgba(255, 90, 106, 0.38);
+  color: rgba(255, 255, 255, 0.96);
+}
+.ui-table td:last-child button:last-child:hover,
+.styled-table td:last-child button:last-child:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 90, 106, 0.3),
+    rgba(255, 90, 106, 0.14)
+  );
+  border-color: rgba(255, 90, 106, 0.52);
+  box-shadow: 0 16px 44px rgba(255, 90, 106, 0.16);
+}
+
+/* Edit button as subtle accent (first action) */
+.ui-table td:last-child button:first-child,
+.styled-table td:last-child button:first-child {
+  background: linear-gradient(
+    180deg,
+    rgba(79, 140, 255, 0.14),
+    rgba(79, 140, 255, 0.08)
+  );
+  border-color: rgba(79, 140, 255, 0.3);
+  color: rgba(255, 255, 255, 0.94);
+}
+.ui-table td:last-child button:first-child:hover,
+.styled-table td:last-child button:first-child:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(79, 140, 255, 0.18),
+    rgba(79, 140, 255, 0.1)
+  );
+  border-color: rgba(79, 140, 255, 0.42);
+  box-shadow: 0 16px 44px rgba(79, 140, 255, 0.14);
+}
+
+/* =========================
+   10) AUTH PAGES
+========================= */
+.ui-auth {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.ui-auth-title {
+  margin: 0 0 var(--s-2);
+  font-size: var(--fs-7);
+  font-weight: 760;
+  letter-spacing: -0.02em;
+}
+
+.ui-auth-subtitle {
+  margin: 0 0 var(--s-6);
+  color: var(--text-2);
+  font-size: var(--fs-3);
+}
+
+.ui-auth-footer {
+  margin: var(--s-5) 0 0;
+  color: var(--text-2);
+  font-size: var(--fs-2);
+}
+
+/* =========================
+   11) FORMS / FIELDS
+========================= */
+.ui-form {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.ui-field {
+  display: grid;
+  gap: 8px;
+}
+
+.ui-field label {
+  font-size: var(--fs-1);
+  color: var(--text-2);
+  letter-spacing: 0.02em;
+}
+
+.ui-field input,
+.ui-field select {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  transition: border-color 0.16s ease, background 0.16s ease,
+    box-shadow 0.16s ease;
+}
+
+.ui-field input::placeholder {
+  color: rgba(255, 255, 255, 0.44);
+}
+
+.ui-field input:hover,
+.ui-field select:hover {
+  border-color: var(--border-strong);
+}
+
+.ui-field input:focus-visible,
+.ui-field select:focus-visible {
+  border-color: rgba(79, 140, 255, 0.52);
+  box-shadow: 0 0 0 4px rgba(79, 140, 255, 0.14);
+}
+
+/* =========================
+   12) DASHBOARD / ACTION CARDS
+========================= */
+.ui-action-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: var(--s-5);
+  border-radius: var(--r-2);
+  border: 1px solid var(--border);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.02)
+  );
+  transition: transform 0.14s ease, border-color 0.14s ease,
+    background 0.14s ease, box-shadow 0.14s ease;
+}
+.ui-action-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(79, 140, 255, 0.3);
+  background: linear-gradient(
+    180deg,
+    rgba(79, 140, 255, 0.12),
+    rgba(255, 255, 255, 0.018)
+  );
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+}
+
+.ui-action-title {
+  margin: 0;
+  font-size: var(--fs-4);
+  font-weight: 760;
+  letter-spacing: -0.01em;
+}
+.ui-action-text {
+  margin: 0;
+  color: var(--text-2);
+  font-size: var(--fs-2);
+}
+
+/* KPI */
+.ui-kpi-card {
+  padding: var(--s-5);
+  border-radius: var(--r-2);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  display: grid;
+  gap: 10px;
+}
+
+.kpi-label {
+  color: var(--text-2);
+  font-size: var(--fs-1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.kpi-value {
+  font-size: var(--fs-6);
+  font-weight: 820;
+  letter-spacing: -0.02em;
+}
+
+/* KPI strip */
+.ui-kpi-strip {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
+}
+@media (min-width: 720px) {
+  .ui-kpi-strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* =========================
+   13) TABS / SUBNAV
+========================= */
+.ui-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  padding: 8px;
+  border-radius: var(--r-2);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ui-tab {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-2);
+  border-radius: 12px;
+  padding: 10px 12px;
+  min-height: 40px;
+  cursor: pointer;
+  transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+}
+.ui-tab:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border);
+  color: var(--text);
+}
+.subnav-btn.active.ui-tab,
+.ui-tab.active {
+  background: rgba(79, 140, 255, 0.12);
+  border-color: rgba(79, 140, 255, 0.32);
+  color: var(--text);
+}
+
+/* =========================
+   14) TOOLBARS
+========================= */
+.ui-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--s-3);
+  margin-bottom: var(--s-4);
+}
+.ui-toolbar-split {
+  justify-content: space-between;
+}
+
+/* =========================
+   15) TABLES (Enterprise data)
+========================= */
+.ui-table-wrap {
+  border: 1px solid var(--border);
+  border-radius: var(--r-2);
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.ui-table,
+.styled-table {
+  width: 100%;
+  min-width: 820px;
+  font-size: var(--fs-2);
+}
+
+.ui-table thead th,
+.styled-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: rgba(15, 20, 27, 0.94);
+  backdrop-filter: blur(10px);
+
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--fs-1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  padding: 14px 14px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.ui-table tbody td,
+.styled-table tbody td {
+  padding: 14px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  vertical-align: top;
+}
+
+.ui-table tbody tr:hover,
+.styled-table tbody tr:hover {
+  background: rgba(79, 140, 255, 0.1);
+}
+
+.ui-td-muted {
+  color: var(--text-3);
+  text-align: center;
+  padding: 18px 14px !important;
+}
+
+/* =========================
+   15.1) WAREHOUSE TABS STATE (CRITICAL)
+========================= */
+.warehouse-section {
+  display: none;
+}
+.warehouse-section.active {
+  display: block;
+}
+
+/* =========================
+   16) MODALS — COMPATIBLE WITH LEGACY JS (CRITICAL)
+   Supports:
+   - .modal + .modal-content (old)
+   - .modal.ui-modal + .modal-content.ui-modal-panel (new)
+========================= */
+.modal,
+.ui-modal {
+  position: fixed;
+  inset: 0;
+  display: none; /* default closed */
+  padding: var(--s-5);
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+/* Open states — covers most JS patterns */
+.modal[style*="display: block"],
+.modal[style*="display:block"],
+.modal[style*="display: flex"],
+.modal[style*="display:flex"],
+.modal.active,
+.modal.open,
+.modal.show,
+.ui-modal[style*="display: block"],
+.ui-modal[style*="display:block"],
+.ui-modal[style*="display: flex"],
+.ui-modal[style*="display:flex"],
+.ui-modal.active,
+.ui-modal.open,
+.ui-modal.show {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content,
+.ui-modal-panel {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  padding: var(--s-6);
+  border-radius: var(--r-3);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(
+    180deg,
+    rgba(25, 34, 50, 0.94),
+    rgba(15, 20, 27, 0.92)
+  );
+  box-shadow: var(--sh-2);
+}
+
+.modal-content h3,
+.ui-modal-title {
+  margin: 0 0 var(--s-4);
+  font-size: var(--fs-6);
+  font-weight: 760;
+  letter-spacing: -0.01em;
+}
+
+.modal-actions,
+.ui-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+}
+
+/* =========================
+   17) PAGE TWEAKS
+========================= */
+.dashboard-container,
+.warehouse-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-6);
+}
+
+.feature-card .feature-title {
+  margin: 0 0 8px;
+  font-size: var(--fs-5);
+  font-weight: 760;
+}
+.feature-card .feature-text {
+  margin: 0;
+  color: var(--text-2);
+  font-size: var(--fs-3);
+}
+
+/* =========================
+   18) RESPONSIVE POLISH
+========================= */
+@media (max-width: 860px) {
+  .header-inner {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .user-panel {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 540px) {
+  .layout-container {
+    padding: 0 var(--s-4);
+  }
+  .hero-title {
+    font-size: 1.85rem;
+  }
+  .ui-page-title {
+    font-size: 1.5rem;
+  }
+  .ui-card,
+  .ui-block,
+  .ui-panel {
+    padding: var(--s-5);
+  }
+  .ui-actions {
+    width: 100%;
+  }
+  .btn {
+    width: 100%;
+  }
+  .ui-table,
+  .styled-table {
+    min-width: 720px;
+  }
+}
+
+/* =========================
+   19) MICRO-ANIMATION (CSS only)
+========================= */
+@media (prefers-reduced-motion: no-preference) {
+  .nav-link,
+  .btn,
+  .ui-action-card,
+  .ui-tab,
+  .ui-table tbody tr,
+  .styled-table tbody tr {
+    transition-duration: 0.16s;
+  }
+
+  .ui-action-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+html {
+  min-height: 100%;
+  background:
+    radial-gradient(1200px 600px at 18% -10%, rgba(79,140,255,.14), transparent 60%),
+    radial-gradient(900px 520px at 85% 0%, rgba(49,208,170,.06), transparent 55%),
+    radial-gradient(1000px 600px at 50% 120%, rgba(255,204,102,.06), transparent 65%),
+    var(--bg);
+}
+
+/* мягкий fade, чтобы низ не "обрывался" */
+html::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 35vh;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(11,14,18,.85),
+    rgba(11,14,18,1)
+  );
+  z-index: -1;
+}
+

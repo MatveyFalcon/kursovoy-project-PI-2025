@@ -1,75 +1,51 @@
-/* ==========================================
-   Logistics OS — THEME TOKENS (v2)
-   Новый дизайн-движок уровня Linear / Stripe
-========================================== */
+:root{
+  /* Enterprise neutral palette */
+  --bg: #0b1020;
+  --surface: #0f1730;
+  --surface-2: #121c38;
+  --surface-3: #162145;
 
-:root {
-    /* ===== ГЛУБОКИЙ ФОН ===== */
-    --bg-body: #020617;      /* Космическая глубина */
-    --bg-surface: #0b1120;   /* Стеклянная панель */
-    --bg-panel: rgba(15,23,42,0.85);
-    --bg-panel-solid: #0f172a;
+  --border: rgba(255,255,255,.10);
+  --border-2: rgba(255,255,255,.14);
 
-    /* ===== GLASS / BLUR ===== */
-    --glass-strong: rgba(15, 23, 42, 0.75);
-    --glass-medium: rgba(15, 23, 42, 0.55);
-    --glass-light: rgba(255, 255, 255, 0.04);
-    --blur-xl: blur(22px);
-    --blur-md: blur(14px);
+  --text: rgba(255,255,255,.92);
+  --text-muted: rgba(255,255,255,.68);
+  --text-faint: rgba(255,255,255,.52);
 
-    /* ===== ТЕКСТ ===== */
-    --text-main: #e2e8f0;
-    --text-soft: #cbd5e1;
-    --text-muted: #94a3b8;
-    --text-faint: #64748b;
+  --accent: #7c5cff;
+  --accent-2: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
 
-    /* ===== АКЦЕНТЫ НЕОНА ===== */
-    --accent: #38bdf8;          /* Cyber Blue */
-    --accent-strong: #0ea5e9;   /* Neon Edge */
-    --accent-glow: rgba(56,189,248,0.55);
+  /* Typography scale */
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
+  --fs-12: 12px;
+  --fs-13: 13px;
+  --fs-14: 14px;
+  --fs-15: 15px;
+  --fs-16: 16px;
+  --fs-18: 18px;
+  --fs-22: 22px;
+  --fs-28: 28px;
 
-    /* ===== СТАТУСЫ ===== */
-    --success: #4ade80;
-    --warning: #fbbf24;
-    --danger: #f87171;
+  --lh: 1.45;
 
-    /* ===== КНОПКИ ===== */
-    --btn-radius: 999px;
-    --btn-padding: 11px 18px;
+  /* 8px spacing scale */
+  --s-4: 4px;
+  --s-8: 8px;
+  --s-12: 12px;
+  --s-16: 16px;
+  --s-20: 20px;
+  --s-24: 24px;
+  --s-32: 32px;
+  --s-40: 40px;
 
-    /* ===== BORERS ===== */
-    --border-subtle: rgba(148,163,184,0.28);
-    --border-strong: rgba(148,163,184,0.55);
+  --r-10: 10px;
+  --r-12: 12px;
+  --r-16: 16px;
 
-    /* ===== ТЕНИ ===== */
-    --shadow-soft: 0 12px 36px rgba(0,0,0,0.55);
-    --shadow-strong: 0 16px 48px rgba(0,0,0,0.75);
-    --shadow-accent: 0 0 22px rgba(56,189,248,0.45);
+  --shadow-1: 0 10px 30px rgba(0,0,0,.35);
+  --shadow-2: 0 18px 60px rgba(0,0,0,.45);
 
-    /* ===== РАДИУСЫ ===== */
-    --radius-sm: 8px;
-    --radius-md: 14px;
-    --radius-lg: 22px;
-
-    /* ===== ТИПОГРАФИКА ===== */
-    --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-
-    --fs-xs: 12px;
-    --fs-sm: 14px;
-    --fs-md: 16px;
-    --fs-lg: 18px;
-    --fs-xl: 26px;
-    --fs-xxl: 34px;
-
-    /* ===== АНИМАЦИИ ===== */
-    --anim-fast: 0.15s ease;
-    --anim-mid: 0.25s ease;
-    --anim-slow: 0.4s ease;
-
-    /* ===== СИСТЕМА ОТСТУПОВ ===== */
-    --gap-xs: 6px;
-    --gap-sm: 10px;
-    --gap-md: 16px;
-    --gap-lg: 24px;
-    --gap-xl: 34px;
+  --focus: 0 0 0 3px rgba(124,92,255,.35);
 }

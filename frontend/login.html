@@ -1,60 +1,76 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Вход в систему — Logistics OS</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Вход — Logistics OS</title>
+    <link rel="stylesheet" href="assets/css/app.css" />
+  </head>
 
-    <link rel="stylesheet" href="assets/css/theme.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+  <body class="app theme-enterprise">
+    <a class="ui-skip" href="#main">Перейти к содержимому</a>
 
-<body>
+    <header class="app-header">
+      <div class="header-inner layout-container">
+        <h1 class="ui-brand">
+          <a class="ui-brand-link" href="index.html">LOGISTICS&nbsp;OS</a>
+        </h1>
 
-<header>
-    <div class="header-inner">
-        <h1>LOGISTICS OS</h1>
-
-        <nav>
-            <a href="index.html">Главная</a>
-            <a href="login.html" class="active">Вход</a>
-            <a href="register.html">Регистрация</a>
+        <nav class="ui-nav">
+          <a href="index.html" class="nav-link">Обзор</a>
+          <a href="login.html" class="nav-link active">Вход</a>
+          <a href="register.html" class="nav-link">Регистрация</a>
         </nav>
-    </div>
-</header>
+      </div>
+    </header>
 
-<main class="auth-container">
+    <main id="main" class="app-main">
+      <div class="layout-container">
+        <section class="auth-container ui-card ui-auth">
+          <h2 class="ui-auth-title">Вход в систему</h2>
+          <p class="ui-auth-subtitle">
+            Авторизация для доступа к операционной платформе Logistics OS.
+          </p>
 
-    <h2>Вход в систему</h2>
+          <form id="loginForm" class="ui-form">
+            <div class="ui-field">
+              <label for="login">Логин</label>
+              <input
+                id="login"
+                type="text"
+                placeholder="Корпоративный логин"
+                required
+                autocomplete="username"
+              />
+            </div>
 
-    <p style="text-align:center; color:var(--text-muted); margin-bottom:18px;">
-        Авторизуйтесь, чтобы продолжить работу с<br>
-        <strong style="color:var(--accent)">Logistics OS</strong>
-    </p>
+            <div class="ui-field">
+              <label for="password">Пароль</label>
+              <input
+                id="password"
+                type="password"
+                placeholder="Пароль аккаунта"
+                required
+                autocomplete="current-password"
+              />
+            </div>
 
-    <form id="loginForm">
+            <button type="submit" class="btn btn-primary ui-btn-wide">
+              Войти
+            </button>
+          </form>
 
-        <label for="login">Логин</label>
-        <input id="login" type="text" placeholder="Введите логин" required>
+          <p class="ui-auth-footer">
+            Нет учётной записи?
+            <a href="register.html" class="ui-link">Создать аккаунт</a>
+          </p>
+        </section>
+      </div>
+    </main>
 
-        <label for="password">Пароль</label>
-        <input id="password" type="password" placeholder="Введите пароль" required>
-
-        <button type="submit" class="btn btn-primary" style="margin-top:10px;">
-            Войти
-        </button>
-    </form>
-
-    <p style="margin-top: 18px;">
-        Нет аккаунта?
-        <a href="register.html">Создать</a>
-    </p>
-
-</main>
-
-<footer>
-    © 2025 Logistics OS. Все права защищены.
-</footer>
-
-<script src="assets/js/app.js"></script>
-</body>
+    <footer class="app-footer">
+      <div class="layout-container">© 2025 Logistics OS</div>
+    </footer>
+    <script src="assets/js/app.js"></script>
+  </body>
 </html>

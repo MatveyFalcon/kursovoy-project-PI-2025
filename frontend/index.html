@@ -1,88 +1,100 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Logistics OS — Управление складом и заказами</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Logistics OS — Enterprise Logistics Platform</title>
+    <link rel="stylesheet" href="assets/css/app.css" />
+  </head>
 
-    <link rel="stylesheet" href="assets/css/theme.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+  <body class="app theme-enterprise">
+    <a class="ui-skip" href="#main">Перейти к содержимому</a>
 
-<body>
+    <header class="app-header">
+      <div class="header-inner layout-container">
+        <h1 class="ui-brand">
+          <a class="ui-brand-link" href="index.html">LOGISTICS&nbsp;OS</a>
+        </h1>
 
-<header>
-    <div class="header-inner">
-        <h1>LOGISTICS OS</h1>
-
-        <nav>
-            <a href="index.html" class="nav-link active">Главная</a>
-            <a href="login.html" class="nav-link">Вход</a>
-            <a href="register.html" class="nav-link">Регистрация</a>
+        <nav class="ui-nav">
+          <a href="index.html" class="nav-link active">Обзор</a>
+          <a href="login.html" class="nav-link">Вход</a>
+          <a href="register.html" class="nav-link">Регистрация</a>
         </nav>
+      </div>
+    </header>
 
-        <div id="userPanel" class="user-panel" style="display:none;">
-            <span id="userLabel"></span>
-            <button id="logoutBtn">Выйти</button>
+    <main id="main" class="app-main">
+      <section class="hero ui-hero">
+        <div class="layout-container ui-hero-inner">
+          <div class="ui-hero-copy">
+            <h2 class="hero-title">Enterprise Logistics OS</h2>
+            <p class="hero-subtitle">
+              Централизованная платформа для управления складской
+              инфраструктурой, операциями и логистическими данными.
+            </p>
+
+            <div class="hero-actions ui-actions">
+              <a href="login.html" class="btn btn-primary">Войти в систему</a>
+              <a href="register.html" class="btn btn-secondary"
+                >Создать аккаунт</a
+              >
+            </div>
+          </div>
+
+          <div class="ui-hero-panel ui-panel">
+            <h3 class="ui-panel-title">Контроль. Структура. Аудит.</h3>
+            <p class="ui-panel-text">
+              Logistics OS объединяет складские процессы, товары и операции в
+              едином системном интерфейсе.
+            </p>
+            <ul class="ui-list">
+              <li>Иерархия складских зон и ячеек</li>
+              <li>Учёт товаров и остатков</li>
+              <li>История операций и действий</li>
+            </ul>
+          </div>
         </div>
-    </div>
-</header>
+      </section>
 
-<main>
+      <section class="features ui-section">
+        <div class="layout-container">
+          <div class="ui-section-head">
+            <h2 class="section-title">Ключевые возможности</h2>
+            <p class="section-description">
+              Функциональные модули для ежедневной операционной работы.
+            </p>
+          </div>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <h2 class="hero-title">Logistics OS</h2>
-
-        <p class="hero-subtitle">
-            Современная система для управления складской инфраструктурой, заказами
-            и взаимодействием с клиентами.
-        </p>
-
-        <div class="hero-actions">
-            <a href="login.html" class="btn btn-primary">Войти в систему</a>
-            <a href="register.html" class="btn btn-secondary">Создать аккаунт</a>
-        </div>
-    </section>
-
-    <!-- FEATURES SECTION -->
-    <section class="features">
-        <h2 class="section-title">Основные возможности</h2>
-
-        <p class="section-description">
-            Платформа объединяет инструменты WMS, TMS и клиентского сервиса.
-            Интерфейс выполнен в строгом корпоративном стиле для удобной ежедневной работы.
-        </p>
-
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3 class="feature-title">Управление складом</h3>
-                <p class="feature-text">
-                    Структура зон, ячеек и операций. Оптимизированный интерфейс для сотрудников склада.
-                </p>
+          <div class="feature-grid ui-grid-3">
+            <div class="feature-card ui-card">
+              <h3 class="feature-title">Складская инфраструктура</h3>
+              <p class="feature-text">
+                Управление зонами, ячейками и параметрами хранения.
+              </p>
             </div>
 
-            <div class="feature-card">
-                <h3 class="feature-title">Личный кабинет клиента</h3>
-                <p class="feature-text">
-                    Размещение заказов, отслеживание и взаимодействие с логистическим оператором.
-                </p>
+            <div class="feature-card ui-card">
+              <h3 class="feature-title">Операции и перемещения</h3>
+              <p class="feature-text">
+                Контроль остатков, перемещений и состояния склада.
+              </p>
             </div>
 
-            <div class="feature-card">
-                <h3 class="feature-title">История операций</h3>
-                <p class="feature-text">
-                    Полная прозрачность: все события фиксируются и доступны для анализа.
-                </p>
+            <div class="feature-card ui-card">
+              <h3 class="feature-title">Прозрачность данных</h3>
+              <p class="feature-text">
+                Все действия фиксируются и доступны для анализа.
+              </p>
             </div>
+          </div>
         </div>
-    </section>
+      </section>
+    </main>
 
-</main>
-
-<footer>
-    © 2025 Logistics OS. Все права защищены.
-</footer>
-
-<script src="assets/js/app.js"></script>
-</body>
+    <footer class="app-footer">
+      <div class="layout-container">© 2025 Logistics OS</div>
+    </footer>
+    <script src="assets/js/app.js"></script>
+  </body>
 </html>

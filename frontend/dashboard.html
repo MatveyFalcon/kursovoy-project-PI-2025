@@ -1,88 +1,113 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Панель управления — Logistics OS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Панель управления — Logistics OS</title>
 
-    <link rel="stylesheet" href="assets/css/theme.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/app.css">
 </head>
 
-<body>
+<body class="app theme-enterprise">
+  <a class="ui-skip" href="#main">Перейти к содержимому</a>
 
-<header>
-    <div class="header-inner">
-        <h1>LOGISTICS OS</h1>
+  <header class="app-header">
+    <div class="header-inner layout-container">
+      <h1 class="ui-brand">
+        <a class="ui-brand-link" href="dashboard.html" aria-label="Logistics OS">LOGISTICS OS</a>
+      </h1>
 
-        <nav>
-            <a id="nav-dashboard" class="nav-link active" href="dashboard.html">Панель</a>
-            <a id="nav-warehouse" class="nav-link" href="warehouse.html">Склад</a>
+      <nav class="ui-nav" aria-label="Навигация">
+        <a id="nav-dashboard" class="nav-link active" href="dashboard.html">Панель</a>
+        <a id="nav-warehouse" class="nav-link" href="warehouse.html">Склад</a>
 
-            <a id="nav-login" class="nav-link" href="login.html">Вход</a>
-            <a id="nav-register" class="nav-link" href="register.html">Регистрация</a>
-        </nav>
+        <a id="nav-login" class="nav-link" href="login.html">Вход</a>
+        <a id="nav-register" class="nav-link" href="register.html">Регистрация</a>
+      </nav>
 
-        <div id="userPanel" class="user-panel" style="display:none;">
-            <span id="userLabel"></span>
-            <button id="logoutBtn">Выйти</button>
-        </div>
+      <div id="userPanel" class="user-panel">
+        <span id="userLabel" class="ui-user-label"></span>
+        <button id="logoutBtn" class="btn btn-secondary" type="button">Выйти</button>
+      </div>
     </div>
-</header>
+  </header>
 
-<main class="dashboard-container">
-
-    <section class="dashboard-greeting">
-        <h2 id="dashWelcome">Добро пожаловать</h2>
-        <p>Это ваша панель управления в системе Logistics OS.</p>
-    </section>
-
-    <section>
-        <h3 class="section-title">Быстрые действия</h3>
-
-        <div class="actions-grid">
-
-            <!-- ❗ ЭТО ИМЕННО ТА КАРТОЧКА, КОТОРУЮ БУДЕМ СКРЫВАТЬ -->
-            <a id="card-warehouse" href="warehouse.html" class="action-card">
-                <h4>Открыть склад</h4>
-                <p>Управление зонами, ячейками и запасами.</p>
-            </a>
-
-            <a href="#" class="action-card">
-                <h4>Создать заказ</h4>
-                <p>Быстрое формирование клиентского заказа.</p>
-            </a>
-
-            <a href="#" class="action-card">
-                <h4>История операций</h4>
-                <p>Просмотр логов действий.</p>
-            </a>
-
-            <a href="#" class="action-card">
-                <h4>Профиль</h4>
-                <p>Управление настройками учетной записи.</p>
-            </a>
+  <main id="main" class="app-main">
+    <div class="layout-container dashboard-container ui-page">
+      <section class="dashboard-greeting ui-page-head">
+        <div class="ui-page-head-left">
+          <h2 id="dashWelcome" class="ui-page-title">Панель управления</h2>
+          <p class="ui-page-subtitle">
+            Операционный обзор и быстрый доступ к ключевым разделам Logistics OS.
+          </p>
         </div>
-    </section>
+      </section>
 
-    <!-- KPI BLOCK -->
-    <section id="analytics-block">
-        <h3 class="section-title">Аналитика</h3>
-
-        <div class="kpi-grid">
-            <div class="kpi-card"><span class="kpi-label">Заказы сегодня</span><span class="kpi-value">—</span></div>
-            <div class="kpi-card"><span class="kpi-label">Активных клиентов</span><span class="kpi-value">—</span></div>
-            <div class="kpi-card"><span class="kpi-label">Занято ячеек</span><span class="kpi-value">—</span></div>
-            <div class="kpi-card"><span class="kpi-label">KPI склада</span><span class="kpi-value">—</span></div>
+      <section class="ui-block">
+        <div class="ui-block-head">
+          <h3 class="section-title">Быстрые действия</h3>
+          <p class="ui-block-hint">Откройте нужный модуль для продолжения работы.</p>
         </div>
-    </section>
 
-</main>
+        <div class="actions-grid ui-actions-grid">
+          <a id="card-warehouse" href="warehouse.html" class="action-card ui-action-card">
+            <h4 class="ui-action-title">Складская инфраструктура</h4>
+            <p class="ui-action-text">Зоны, ячейки, товары, остатки и перемещения.</p>
+          </a>
 
-<footer>© 2025 Logistics OS. Все права защищены.</footer>
+          <a href="#" class="action-card ui-action-card">
+            <h4 class="ui-action-title">Создать заказ</h4>
+            <p class="ui-action-text">Формирование заказа: {{N/A}}</p>
+          </a>
 
-<script src="assets/js/app.js"></script>
-<script src="assets/js/dashboard.js"></script>
+          <a href="#" class="action-card ui-action-card">
+            <h4 class="ui-action-title">История операций</h4>
+            <p class="ui-action-text">Журнал действий: {{N/A}}</p>
+          </a>
 
+          <a href="#" class="action-card ui-action-card">
+            <h4 class="ui-action-title">Профиль</h4>
+            <p class="ui-action-text">Настройки учётной записи: {{N/A}}</p>
+          </a>
+        </div>
+      </section>
+
+      <section id="analytics-block" class="ui-block">
+        <div class="ui-block-head">
+          <h3 class="section-title">Ключевые показатели</h3>
+          <p class="ui-block-hint">Метрики отображаются при наличии операционных данных.</p>
+        </div>
+
+        <div class="kpi-grid ui-kpi-grid">
+          <div class="kpi-card ui-kpi-card">
+            <span class="kpi-label">Заказы за день</span>
+            <span class="kpi-value">—</span>
+          </div>
+
+          <div class="kpi-card ui-kpi-card">
+            <span class="kpi-label">Активные клиенты</span>
+            <span class="kpi-value">—</span>
+          </div>
+
+          <div class="kpi-card ui-kpi-card">
+            <span class="kpi-label">Занято ячеек</span>
+            <span class="kpi-value">—</span>
+          </div>
+
+          <div class="kpi-card ui-kpi-card">
+            <span class="kpi-label">KPI склада</span>
+            <span class="kpi-value">—</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="layout-container">© 2025 Logistics OS. Все права защищены.</div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/dashboard.js"></script>
 </body>
 </html>

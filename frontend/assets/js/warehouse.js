@@ -573,6 +573,7 @@ document.getElementById("createStockBtn")?.addEventListener("click", () => {
     .then(() => {
       modalAddStock.classList.remove("show");
       loadStock();
+      
     });
 });
 

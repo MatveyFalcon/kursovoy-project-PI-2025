@@ -1,77 +1,76 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Склад — Logistics OS</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Склад — Logistics OS</title>
 
-    <link rel="stylesheet" href="assets/css/theme.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/warehouse.css" />
-  </head>
+  <link rel="stylesheet" href="assets/css/app.css" />
+</head>
 
-  <body>
-    <header>
-      <div class="header-inner">
-        <h1>LOGISTICS OS</h1>
+<body class="app theme-enterprise">
+  <a class="ui-skip" href="#main">Перейти к содержимому</a>
 
-        <nav>
-          <a href="dashboard.html" class="nav-link">Панель</a>
-          <a href="warehouse.html" class="nav-link active">Склад</a>
-        </nav>
+  <header class="app-header">
+    <div class="header-inner layout-container">
+      <h1 class="ui-brand">
+        <a class="ui-brand-link" href="dashboard.html" aria-label="Logistics OS">LOGISTICS OS</a>
+      </h1>
 
-        <div id="userPanel" class="user-panel" style="display: none">
-          <span id="userLabel"></span>
-          <button id="logoutBtn">Выйти</button>
-        </div>
+      <nav class="ui-nav" aria-label="Навигация">
+        <a href="dashboard.html" class="nav-link">Панель</a>
+        <a href="warehouse.html" class="nav-link active">Склад</a>
+      </nav>
+
+      <div id="userPanel" class="user-panel">
+        <span id="userLabel" class="ui-user-label"></span>
+        <button id="logoutBtn" class="btn btn-secondary" type="button">Выйти</button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main class="warehouse-container">
-      <!-- PAGE TITLE -->
-      <section class="warehouse-header">
-        <h2 class="warehouse-title">Склад</h2>
-        <p class="warehouse-subtitle">
-          Управляйте структурами хранения, контролируйте доступность ячеек и
-          следите за состоянием складской инфраструктуры.
-        </p>
+  <main id="main" class="app-main">
+    <div class="layout-container warehouse-container ui-page">
+      <section class="warehouse-header ui-page-head">
+        <div class="ui-page-head-left">
+          <h2 class="warehouse-title ui-page-title">Склад</h2>
+          <p class="warehouse-subtitle ui-page-subtitle">
+            Управление структурой хранения, номенклатурой и остатками в едином интерфейсе.
+          </p>
+        </div>
       </section>
 
-      <!-- KPI SUMMARY -->
-      <section class="warehouse-kpi">
-        <div class="kpi-card">
+      <section class="warehouse-kpi ui-kpi-strip" aria-label="Сводка">
+        <div class="kpi-card ui-kpi-card">
           <span class="kpi-label">Всего зон</span>
           <span class="kpi-value" id="kpi-zones">—</span>
         </div>
 
-        <div class="kpi-card">
+        <div class="kpi-card ui-kpi-card">
           <span class="kpi-label">Всего ячеек</span>
           <span class="kpi-value" id="kpi-cells">—</span>
         </div>
 
-        <div class="kpi-card">
+        <div class="kpi-card ui-kpi-card">
           <span class="kpi-label">Занято ячеек</span>
           <span class="kpi-value" id="kpi-occupied-cells">—</span>
         </div>
       </section>
 
-      <!-- SUBNAV -->
-      <section class="warehouse-subnav">
-        <button class="subnav-btn active" data-section="cells">Ячейки</button>
-        <button class="subnav-btn" data-section="zones">Зоны</button>
-        <button class="subnav-btn" data-section="products">Товары</button>
-        <button class="subnav-btn" data-section="stock">Остатки</button>
+      <section class="warehouse-subnav ui-tabs" aria-label="Разделы склада">
+        <button class="subnav-btn active ui-tab" data-section="cells" type="button">Ячейки</button>
+        <button class="subnav-btn ui-tab" data-section="zones" type="button">Зоны</button>
+        <button class="subnav-btn ui-tab" data-section="products" type="button">Товары</button>
+        <button class="subnav-btn ui-tab" data-section="stock" type="button">Остатки</button>
       </section>
 
-      <!-- CELLS SECTION -->
-      <section id="section-cells" class="warehouse-section active">
-        <div class="section-toolbar">
-          <button id="addCellBtn" class="btn btn-primary">
-            Добавить ячейку
-          </button>
+      <section id="section-cells" class="warehouse-section active ui-block" aria-label="Ячейки">
+        <div class="section-toolbar ui-toolbar">
+          <button id="addCellBtn" class="btn btn-primary" type="button">Добавить ячейку</button>
         </div>
 
-        <div class="table-wrapper">
-          <table class="styled-table">
+        <div class="table-wrapper ui-table-wrap">
+          <table class="styled-table ui-table" aria-label="Ячейки">
             <thead>
               <tr>
                 <th>ID</th>
@@ -86,21 +85,20 @@
 
             <tbody id="cellsTableBody">
               <tr>
-                <td colspan="5" style="text-align: center">Загрузка...</td>
+                <td colspan="7" class="ui-td-muted">Загрузка данных…</td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <!-- ZONES SECTION -->
-      <section id="section-zones" class="warehouse-section">
-        <div class="section-toolbar">
-          <button id="addZoneBtn" class="btn btn-primary">Добавить зону</button>
+      <section id="section-zones" class="warehouse-section ui-block" aria-label="Зоны">
+        <div class="section-toolbar ui-toolbar">
+          <button id="addZoneBtn" class="btn btn-primary" type="button">Добавить зону</button>
         </div>
 
-        <div class="table-wrapper">
-          <table class="styled-table">
+        <div class="table-wrapper ui-table-wrap">
+          <table class="styled-table ui-table" aria-label="Зоны">
             <thead>
               <tr>
                 <th>ID</th>
@@ -113,23 +111,20 @@
 
             <tbody id="zonesTableBody">
               <tr>
-                <td colspan="5" style="text-align: center">Загрузка...</td>
+                <td colspan="5" class="ui-td-muted">Загрузка данных…</td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <!-- PRODUCTS SECTION -->
-      <section id="section-products" class="warehouse-section">
-        <div class="section-toolbar">
-          <button id="addProductBtn" class="btn btn-primary">
-            Добавить товар
-          </button>
+      <section id="section-products" class="warehouse-section ui-block" aria-label="Товары">
+        <div class="section-toolbar ui-toolbar">
+          <button id="addProductBtn" class="btn btn-primary" type="button">Добавить товар</button>
         </div>
 
-        <div class="table-wrapper">
-          <table class="styled-table">
+        <div class="table-wrapper ui-table-wrap">
+          <table class="styled-table ui-table" aria-label="Товары">
             <thead>
               <tr>
                 <th>ID</th>
@@ -144,26 +139,21 @@
 
             <tbody id="productsTableBody">
               <tr>
-                <td colspan="7" style="text-align: center">Загрузка...</td>
+                <td colspan="7" class="ui-td-muted">Загрузка данных…</td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <section id="section-stock" class="warehouse-section">
-        <div class="section-toolbar">
-          <button id="moveStockBtn" class="btn btn-secondary">
-            Переместить товар
-          </button>
-
-          <button id="addStockBtn" class="btn btn-primary">
-            Добавить остаток
-          </button>
+      <section id="section-stock" class="warehouse-section ui-block" aria-label="Остатки">
+        <div class="section-toolbar ui-toolbar ui-toolbar-split">
+          <button id="moveStockBtn" class="btn btn-secondary" type="button">Переместить товар</button>
+          <button id="addStockBtn" class="btn btn-primary" type="button">Добавить остаток</button>
         </div>
 
-        <div class="table-wrapper">
-          <table class="styled-table">
+        <div class="table-wrapper ui-table-wrap">
+          <table class="styled-table ui-table" aria-label="Остатки">
             <thead>
               <tr>
                 <th>Ячейка</th>
@@ -174,195 +164,254 @@
             </thead>
             <tbody id="stockTableBody">
               <tr>
-                <td colspan="4" style="text-align: center">Загрузка...</td>
+                <td colspan="4" class="ui-td-muted">Загрузка данных…</td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
-    </main>
+    </div>
+  </main>
 
-    <!-- MODAL: ADD CELL -->
-    <div class="modal" id="modalAddCell">
-      <div class="modal-content">
-        <h3>Создание ячейки</h3>
+  <!-- MODAL: ADD CELL -->
+  <div class="modal ui-modal" id="modalAddCell" role="dialog" aria-modal="true">
+    <div class="modal-content ui-modal-panel">
+      <h3 class="ui-modal-title">Создание ячейки</h3>
 
-        <label for="modalZone">Зона</label>
-        <select id="modalZone"></select>
+      <div class="ui-form">
+        <div class="ui-field">
+          <label for="modalZone">Зона</label>
+          <select id="modalZone"></select>
+        </div>
 
-        <label for="modalCode">Код ячейки</label>
-        <input id="modalCode" type="text" placeholder="Например A-12" />
+        <div class="ui-field">
+          <label for="modalCode">Код ячейки</label>
+          <input id="modalCode" type="text" placeholder="Код (например: A-12)" />
+        </div>
 
-        <label for="modalVolume">Макс. объём (м³)</label>
-        <input id="modalVolume" type="number" step="0.001" />
+        <div class="ui-field">
+          <label for="modalVolume">Макс. объём (м³)</label>
+          <input id="modalVolume" type="number" step="0.001" placeholder="0.000" />
+        </div>
 
-        <label for="modalWeight">Макс. вес (кг)</label>
-        <input id="modalWeight" type="number" step="0.001" />
+        <div class="ui-field">
+          <label for="modalWeight">Макс. вес (кг)</label>
+          <input id="modalWeight" type="number" step="0.001" placeholder="0.000" />
+        </div>
 
-        <label for="modalDescription">Описание</label>
-        <input
-          id="modalDescription"
-          type="text"
-          placeholder="Примечание, особенности ячейки"
-        />
-
-        <div class="modal-actions">
-          <button class="btn btn-secondary" id="closeModalBtn">Отмена</button>
-          <button class="btn btn-primary" id="createCellBtn">Создать</button>
+        <div class="ui-field">
+          <label for="modalDescription">Описание</label>
+          <input id="modalDescription" type="text" placeholder="Примечание (опционально)" />
         </div>
       </div>
-    </div>
 
-    <!-- MODAL: EDIT CELL -->
-    <div class="modal" id="modalEditCell">
-      <div class="modal-content">
-        <h3>Редактирование ячейки</h3>
-
-        <input type="hidden" id="editCellId" />
-
-        <label for="editZone">Зона</label>
-        <select id="editZone"></select>
-
-        <label for="editCode">Код ячейки</label>
-        <input id="editCode" type="text" />
-
-        <label for="editVolume">Макс. объём (м³)</label>
-        <input id="editVolume" type="number" step="0.001" />
-
-        <label for="editWeight">Макс. вес (кг)</label>
-        <input id="editWeight" type="number" step="0.001" />
-
-        <label for="editDescription">Описание</label>
-        <input id="editDescription" type="text" />
-
-        <div class="modal-actions">
-          <button class="btn btn-secondary" id="closeEditModal">Отмена</button>
-          <button class="btn btn-primary" id="saveEditCell">Сохранить</button>
-        </div>
+      <div class="modal-actions ui-modal-actions">
+        <button class="btn btn-secondary" id="closeModalBtn" type="button">Отмена</button>
+        <button class="btn btn-primary" id="createCellBtn" type="button">Создать</button>
       </div>
     </div>
+  </div>
 
-    <!-- MODAL: ADD ZONE -->
-    <div class="modal" id="modalAddZone">
-      <div class="modal-content">
-        <h3>Создание зоны</h3>
+  <!-- MODAL: EDIT CELL -->
+  <div class="modal ui-modal" id="modalEditCell" role="dialog" aria-modal="true">
+    <div class="modal-content ui-modal-panel">
+      <h3 class="ui-modal-title">Редактирование ячейки</h3>
 
-        <label for="zoneName">Название зоны</label>
-        <input id="zoneName" type="text" placeholder="Например: Зона A" />
+      <input type="hidden" id="editCellId" />
 
-        <label for="zoneDesc">Описание</label>
-        <input
-          id="zoneDesc"
-          type="text"
-          placeholder="Назначение или примечание"
-        />
+      <div class="ui-form">
+        <div class="ui-field">
+          <label for="editZone">Зона</label>
+          <select id="editZone"></select>
+        </div>
 
-        <div class="modal-actions">
-          <button class="btn btn-secondary" id="closeAddZone">Отмена</button>
-          <button class="btn btn-primary" id="saveAddZone">Создать</button>
+        <div class="ui-field">
+          <label for="editCode">Код ячейки</label>
+          <input id="editCode" type="text" />
+        </div>
+
+        <div class="ui-field">
+          <label for="editVolume">Макс. объём (м³)</label>
+          <input id="editVolume" type="number" step="0.001" />
+        </div>
+
+        <div class="ui-field">
+          <label for="editWeight">Макс. вес (кг)</label>
+          <input id="editWeight" type="number" step="0.001" />
+        </div>
+
+        <div class="ui-field">
+          <label for="editDescription">Описание</label>
+          <input id="editDescription" type="text" />
         </div>
       </div>
-    </div>
 
-    <!-- MODAL: EDIT ZONE -->
-    <div class="modal" id="modalEditZone">
-      <div class="modal-content">
-        <h3>Редактирование зоны</h3>
-
-        <input type="hidden" id="editZoneId" />
-
-        <label for="editZoneName">Название зоны</label>
-        <input id="editZoneName" type="text" />
-
-        <label for="editZoneDesc">Описание</label>
-        <input id="editZoneDesc" type="text" />
-
-        <div class="modal-actions">
-          <button class="btn btn-secondary" id="closeEditZone">Отмена</button>
-          <button class="btn btn-primary" id="saveEditZone">Сохранить</button>
-        </div>
+      <div class="modal-actions ui-modal-actions">
+        <button class="btn btn-secondary" id="closeEditModal" type="button">Отмена</button>
+        <button class="btn btn-primary" id="saveEditCell" type="button">Сохранить</button>
       </div>
     </div>
+  </div>
 
-    <div class="modal" id="modalAddStock">
-      <div class="modal-content">
-        <h3>Добавить остаток</h3>
+  <!-- MODAL: ADD ZONE -->
+  <div class="modal ui-modal" id="modalAddZone" role="dialog" aria-modal="true">
+    <div class="modal-content ui-modal-panel">
+      <h3 class="ui-modal-title">Создание зоны</h3>
 
-        <label>Ячейка</label>
-        <select id="stockCell"></select>
+      <div class="ui-form">
+        <div class="ui-field">
+          <label for="zoneName">Название зоны</label>
+          <input id="zoneName" type="text" placeholder="Название зоны" />
+        </div>
 
-        <label>Товар</label>
-        <select id="stockProduct"></select>
-
-        <label>Количество</label>
-        <input type="number" id="stockQty" step="0.001" />
-
-        <div class="modal-actions">
-          <button class="btn btn-secondary" id="closeStockModal">Отмена</button>
-          <button class="btn btn-primary" id="createStockBtn">Добавить</button>
+        <div class="ui-field">
+          <label for="zoneDesc">Описание</label>
+          <input id="zoneDesc" type="text" placeholder="Назначение (опционально)" />
         </div>
       </div>
-    </div>
 
-    <div class="modal" id="modalAddProduct">
-      <div class="modal-content">
-        <h3>Добавление товара</h3>
-
-        <label>SKU</label>
-        <input id="productSku" type="text" placeholder="Например SKU-001" />
-
-        <label>Название</label>
-        <input id="productName" type="text" />
-
-        <label>Категория</label>
-        <select id="productCategory"></select>
-
-        <label>Единица измерения</label>
-        <select id="productUnit"></select>
-
-        <label>Вес</label>
-        <input id="productWeight" type="number" step="0.001" />
-
-        <label>Объём</label>
-        <input id="productVolume" type="number" step="0.001" />
-
-        <div class="modal-actions">
-          <button class="btn btn-secondary" id="closeProductModal">
-            Отмена
-          </button>
-          <button class="btn btn-primary" id="createProductBtn">Создать</button>
-        </div>
+      <div class="modal-actions ui-modal-actions">
+        <button class="btn btn-secondary" id="closeAddZone" type="button">Отмена</button>
+        <button class="btn btn-primary" id="saveAddZone" type="button">Создать</button>
       </div>
     </div>
+  </div>
 
-    <div class="modal" id="modalMoveStock">
-      <div class="modal-content">
-        <h3>Перемещение товара</h3>
+  <!-- MODAL: EDIT ZONE -->
+  <div class="modal ui-modal" id="modalEditZone" role="dialog" aria-modal="true">
+    <div class="modal-content ui-modal-panel">
+      <h3 class="ui-modal-title">Редактирование зоны</h3>
 
-        <label>Товар</label>
-        <select id="moveProduct"></select>
+      <input type="hidden" id="editZoneId" />
 
-        <label>Из ячейки</label>
-        <select id="moveFromCell"></select>
+      <div class="ui-form">
+        <div class="ui-field">
+          <label for="editZoneName">Название зоны</label>
+          <input id="editZoneName" type="text" />
+        </div>
 
-        <label>В ячейку</label>
-        <select id="moveToCell"></select>
-
-        <label>Количество</label>
-        <input id="moveQuantity" type="number" step="0.001" />
-
-        <div class="modal-actions">
-          <button class="btn btn-secondary" id="closeMoveModal">Отмена</button>
-          <button class="btn btn-primary" id="confirmMoveBtn">
-            Переместить
-          </button>
+        <div class="ui-field">
+          <label for="editZoneDesc">Описание</label>
+          <input id="editZoneDesc" type="text" />
         </div>
       </div>
+
+      <div class="modal-actions ui-modal-actions">
+        <button class="btn btn-secondary" id="closeEditZone" type="button">Отмена</button>
+        <button class="btn btn-primary" id="saveEditZone" type="button">Сохранить</button>
+      </div>
     </div>
+  </div>
 
-    <footer>© 2025 Logistics OS. Все права защищены.</footer>
+  <div class="modal ui-modal" id="modalAddStock" role="dialog" aria-modal="true">
+    <div class="modal-content ui-modal-panel">
+      <h3 class="ui-modal-title">Добавить остаток</h3>
 
-    <script src="assets/js/app.js"></script>
-    <script src="assets/js/warehouse.js"></script>
-  </body>
+      <div class="ui-form">
+        <div class="ui-field">
+          <label for="stockCell">Ячейка</label>
+          <select id="stockCell"></select>
+        </div>
+
+        <div class="ui-field">
+          <label for="stockProduct">Товар</label>
+          <select id="stockProduct"></select>
+        </div>
+
+        <div class="ui-field">
+          <label for="stockQty">Количество</label>
+          <input type="number" id="stockQty" step="0.001" placeholder="0.000" />
+        </div>
+      </div>
+
+      <div class="modal-actions ui-modal-actions">
+        <button class="btn btn-secondary" id="closeStockModal" type="button">Отмена</button>
+        <button class="btn btn-primary" id="createStockBtn" type="button">Добавить</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal ui-modal" id="modalAddProduct" role="dialog" aria-modal="true">
+    <div class="modal-content ui-modal-panel">
+      <h3 class="ui-modal-title">Добавление товара</h3>
+
+      <div class="ui-form">
+        <div class="ui-field">
+          <label for="productSku">SKU</label>
+          <input id="productSku" type="text" placeholder="SKU (например: SKU-001)" />
+        </div>
+
+        <div class="ui-field">
+          <label for="productName">Название</label>
+          <input id="productName" type="text" placeholder="Название товара" />
+        </div>
+
+        <div class="ui-field">
+          <label for="productCategory">Категория</label>
+          <select id="productCategory"></select>
+        </div>
+
+        <div class="ui-field">
+          <label for="productUnit">Единица измерения</label>
+          <select id="productUnit"></select>
+        </div>
+
+        <div class="ui-field">
+          <label for="productWeight">Вес</label>
+          <input id="productWeight" type="number" step="0.001" placeholder="0.000" />
+        </div>
+
+        <div class="ui-field">
+          <label for="productVolume">Объём</label>
+          <input id="productVolume" type="number" step="0.001" placeholder="0.000" />
+        </div>
+      </div>
+
+      <div class="modal-actions ui-modal-actions">
+        <button class="btn btn-secondary" id="closeProductModal" type="button">Отмена</button>
+        <button class="btn btn-primary" id="createProductBtn" type="button">Создать</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal ui-modal" id="modalMoveStock" role="dialog" aria-modal="true">
+    <div class="modal-content ui-modal-panel">
+      <h3 class="ui-modal-title">Перемещение товара</h3>
+
+      <div class="ui-form">
+        <div class="ui-field">
+          <label for="moveProduct">Товар</label>
+          <select id="moveProduct"></select>
+        </div>
+
+        <div class="ui-field">
+          <label for="moveFromCell">Из ячейки</label>
+          <select id="moveFromCell"></select>
+        </div>
+
+        <div class="ui-field">
+          <label for="moveToCell">В ячейку</label>
+          <select id="moveToCell"></select>
+        </div>
+
+        <div class="ui-field">
+          <label for="moveQuantity">Количество</label>
+          <input id="moveQuantity" type="number" step="0.001" placeholder="0.000" />
+        </div>
+      </div>
+
+      <div class="modal-actions ui-modal-actions">
+        <button class="btn btn-secondary" id="closeMoveModal" type="button">Отмена</button>
+        <button class="btn btn-primary" id="confirmMoveBtn" type="button">Переместить</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="layout-container">© 2025 Logistics OS. Все права защищены.</div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/warehouse.js"></script>
+</body>
 </html>
