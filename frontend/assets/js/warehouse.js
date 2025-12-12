@@ -1,5 +1,6 @@
 console.log("warehouse.js loaded");
 
+
 // Запрет доступа к складу для клиента
 const currentUserType = localStorage.getItem("userType");
 if (!currentUserType || currentUserType === "client") {
@@ -166,6 +167,17 @@ function loadCells() {
       if (kpiCells) {
         kpiCells.textContent = data.cells.length;
       }
+      async function loadOccupiedCells() {
+        const res = await fetch(`${API_BASE}/warehouse/get_occupied_cells.php`);
+        const data = await res.json();
+
+        const el = document.getElementById("kpi-occupied-cells");
+        if (el) {
+          el.textContent = data.occupied_cells;
+        }
+      }
+      loadOccupiedCells();
+
 
       // навешиваем действия
       cellsTableBody.querySelectorAll(".cell-edit-btn").forEach((btn) => {
