@@ -568,3 +568,203 @@ document.getElementById("createStockBtn")?.addEventListener("click", () => {
 document
   .querySelector('[data-section="stock"]')
   ?.addEventListener("click", loadStock);
+
+// ==========================
+// PRODUCTS
+// ==========================
+
+const productsBody = document.getElementById("productsTableBody");
+const modalAddProduct = document.getElementById("modalAddProduct");
+
+document.getElementById("addProductBtn")?.addEventListener("click", () => {
+  loadProductMeta();
+  modalAddProduct.classList.add("show");
+});
+
+document.getElementById("closeProductModal")?.addEventListener("click", () => {
+  modalAddProduct.classList.remove("show");
+});
+
+async function loadProducts() {
+  const res = await fetch(`${API_BASE}/warehouse/get_products.php`);
+  const data = await res.json();
+
+  productsBody.innerHTML = "";
+
+  data.products.forEach((p) => {
+    productsBody.innerHTML += `
+      <tr>
+        <td>${p.product_id}</td>
+        <td>${p.sku}</td>
+        <td>${p.name}</td>
+        <td>${p.category_name || "-"}</td>
+        <td>${p.unit_name || "-"}</td>
+        <td>${p.weight || "-"}</td>
+        <td>${p.volume || "-"}</td>
+      </tr>
+    `;
+  });
+}
+
+async function loadProductMeta() {
+  const [cats, units] = await Promise.all([
+    fetch(`${API_BASE}/warehouse/get_categories.php`).then((r) => r.json()),
+    fetch(`${API_BASE}/warehouse/get_units.php`).then((r) => r.json()),
+  ]);
+
+  const catSelect = document.getElementById("productCategory");
+  const unitSelect = document.getElementById("productUnit");
+
+  catSelect.innerHTML = "";
+  unitSelect.innerHTML = "";
+
+  cats.categories.forEach((c) => {
+    catSelect.innerHTML += `<option value="${c.category_id}">${c.name}</option>`;
+  });
+
+  units.units.forEach((u) => {
+    unitSelect.innerHTML += `<option value="${u.unit_id}">${u.name}</option>`;
+  });
+}
+
+document
+  .getElementById("createProductBtn")
+  ?.addEventListener("click", async () => {
+    const payload = {
+      sku: document.getElementById("productSku").value,
+      name: document.getElementById("productName").value,
+      category_id: document.getElementById("productCategory").value,
+      unit_id: document.getElementById("productUnit").value,
+      weight: document.getElementById("productWeight").value,
+      volume: document.getElementById("productVolume").value,
+    };
+
+    const res = await fetch(`${API_BASE}/warehouse/create_product.php`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await res.json();
+    if (result.message !== "ok") return alert(result.message);
+
+    modalAddProduct.classList.remove("show");
+    loadProducts();
+  });
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadProducts();
+});
+
+// ==========================
+// MOVE STOCK MODAL
+// ==========================
+
+const moveStockBtn = document.getElementById("moveStockBtn");
+const moveStockModal = document.getElementById("modalMoveStock");
+const closeMoveModalBtn = document.getElementById("closeMoveModal");
+
+const moveProductSelect = document.getElementById("moveProduct");
+const moveFromCellSelect = document.getElementById("moveFromCell");
+const moveToCellSelect = document.getElementById("moveToCell");
+
+if (moveStockBtn) {
+  moveStockBtn.addEventListener("click", async () => {
+    await loadMoveStockData();
+    moveStockModal.classList.add("show");
+  });
+}
+
+if (closeMoveModalBtn) {
+  closeMoveModalBtn.addEventListener("click", () => {
+    moveStockModal.classList.remove("show");
+  });
+}
+
+async function loadMoveStockData() {
+  // очищаем селекты
+  moveProductSelect.innerHTML = "";
+  moveFromCellSelect.innerHTML = "";
+  moveToCellSelect.innerHTML = "";
+
+  // загружаем товары и ячейки параллельно
+  const [productsRes, cellsRes] = await Promise.all([
+    fetch(`${API_BASE}/warehouse/get_products.php`).then((r) => r.json()),
+    fetch(`${API_BASE}/warehouse/get_cells.php`).then((r) => r.json()),
+  ]);
+
+  // товары
+  productsRes.products.forEach((p) => {
+    const opt = document.createElement("option");
+    opt.value = p.product_id;
+    opt.textContent = `${p.sku} — ${p.name}`;
+    moveProductSelect.appendChild(opt);
+  });
+
+  // ячейки
+  cellsRes.cells.forEach((c) => {
+    const label = `${c.cell_code} (${c.zone_name})`;
+
+    const optFrom = document.createElement("option");
+    optFrom.value = c.cell_id;
+    optFrom.textContent = label;
+
+    const optTo = optFrom.cloneNode(true);
+
+    moveFromCellSelect.appendChild(optFrom);
+    moveToCellSelect.appendChild(optTo);
+  });
+}
+
+// ==========================
+// MOVE STOCK ACTION
+// ==========================
+
+const confirmMoveBtn = document.getElementById("confirmMoveBtn");
+
+confirmMoveBtn?.addEventListener("click", async () => {
+  const payload = {
+    product_id: Number(document.getElementById("moveProduct").value),
+    from_cell: Number(document.getElementById("moveFromCell").value),
+    to_cell: Number(document.getElementById("moveToCell").value),
+    quantity: Number(document.getElementById("moveQuantity").value),
+  };
+
+  if (
+    !payload.product_id ||
+    !payload.from_cell ||
+    !payload.to_cell ||
+    !payload.quantity
+  ) {
+    alert("Заполните все поля");
+    return;
+  }
+
+  if (payload.from_cell === payload.to_cell) {
+    alert("Ячейки должны отличаться");
+    return;
+  }
+
+  const res = await fetch(`${API_BASE}/warehouse/move_stock.php`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  const result = await res.json();
+
+  if (result.message !== "ok") {
+    alert(result.message);
+    return;
+  }
+
+  // закрываем модалку
+  document.getElementById("modalMoveStock").classList.remove("show");
+
+  // обновляем остатки
+  if (typeof loadStock === "function") {
+    loadStock();
+  }
+
+  alert("Товар успешно перемещён");
+});

@@ -122,11 +122,41 @@
 
       <!-- PRODUCTS SECTION -->
       <section id="section-products" class="warehouse-section">
-        <p class="placeholder-text">Здесь позже будет управление товарами.</p>
+        <div class="section-toolbar">
+          <button id="addProductBtn" class="btn btn-primary">
+            Добавить товар
+          </button>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>SKU</th>
+                <th>Название</th>
+                <th>Категория</th>
+                <th>Ед.</th>
+                <th>Вес</th>
+                <th>Объём</th>
+              </tr>
+            </thead>
+
+            <tbody id="productsTableBody">
+              <tr>
+                <td colspan="7" style="text-align: center">Загрузка...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section id="section-stock" class="warehouse-section">
         <div class="section-toolbar">
+          <button id="moveStockBtn" class="btn btn-secondary">
+            Переместить товар
+          </button>
+
           <button id="addStockBtn" class="btn btn-primary">
             Добавить остаток
           </button>
@@ -270,6 +300,62 @@
         <div class="modal-actions">
           <button class="btn btn-secondary" id="closeStockModal">Отмена</button>
           <button class="btn btn-primary" id="createStockBtn">Добавить</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalAddProduct">
+      <div class="modal-content">
+        <h3>Добавление товара</h3>
+
+        <label>SKU</label>
+        <input id="productSku" type="text" placeholder="Например SKU-001" />
+
+        <label>Название</label>
+        <input id="productName" type="text" />
+
+        <label>Категория</label>
+        <select id="productCategory"></select>
+
+        <label>Единица измерения</label>
+        <select id="productUnit"></select>
+
+        <label>Вес</label>
+        <input id="productWeight" type="number" step="0.001" />
+
+        <label>Объём</label>
+        <input id="productVolume" type="number" step="0.001" />
+
+        <div class="modal-actions">
+          <button class="btn btn-secondary" id="closeProductModal">
+            Отмена
+          </button>
+          <button class="btn btn-primary" id="createProductBtn">Создать</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalMoveStock">
+      <div class="modal-content">
+        <h3>Перемещение товара</h3>
+
+        <label>Товар</label>
+        <select id="moveProduct"></select>
+
+        <label>Из ячейки</label>
+        <select id="moveFromCell"></select>
+
+        <label>В ячейку</label>
+        <select id="moveToCell"></select>
+
+        <label>Количество</label>
+        <input id="moveQuantity" type="number" step="0.001" />
+
+        <div class="modal-actions">
+          <button class="btn btn-secondary" id="closeMoveModal">Отмена</button>
+          <button class="btn btn-primary" id="confirmMoveBtn">
+            Переместить
+          </button>
         </div>
       </div>
     </div>
