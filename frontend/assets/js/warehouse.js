@@ -1,6 +1,5 @@
 console.log("warehouse.js loaded");
 
-
 // Запрет доступа к складу для клиента
 const currentUserType = localStorage.getItem("userType");
 if (!currentUserType || currentUserType === "client") {
@@ -19,6 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initZoneSection();
   loadCells();
   loadZones();
+  loadProducts();
+  refreshCellsKpi();
 });
 
 /* -----------------------------------------
@@ -162,23 +163,6 @@ function loadCells() {
         cellsTableBody.appendChild(tr);
       });
 
-      // KPI по ячейкам
-      const kpiCells = document.getElementById("kpi-cells");
-      if (kpiCells) {
-        kpiCells.textContent = data.cells.length;
-      }
-      async function loadOccupiedCells() {
-        const res = await fetch(`${API_BASE}/warehouse/get_occupied_cells.php`);
-        const data = await res.json();
-
-        const el = document.getElementById("kpi-occupied-cells");
-        if (el) {
-          el.textContent = data.occupied_cells;
-        }
-      }
-      loadOccupiedCells();
-
-
       // навешиваем действия
       cellsTableBody.querySelectorAll(".cell-edit-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -193,6 +177,28 @@ function loadCells() {
           if (tr) deleteCell(tr.dataset.id);
         });
       });
+    });
+}
+
+function refreshCellsKpi() {
+  // всего ячеек
+  fetch(`${API_BASE}/warehouse/get_cells.php`)
+    .then((r) => r.json())
+    .then((data) => {
+      const kpiCells = document.getElementById("kpi-cells");
+      if (kpiCells) {
+        kpiCells.textContent = data.cells.length;
+      }
+    });
+
+  // занятые ячейки
+  fetch(`${API_BASE}/warehouse/get_occupied_cells.php`)
+    .then((r) => r.json())
+    .then((data) => {
+      const el = document.getElementById("kpi-occupied-cells");
+      if (el) {
+        el.textContent = data.occupied_cells;
+      }
     });
 }
 
@@ -219,6 +225,8 @@ function createCell() {
       }
       hideModal(modalAddCell);
       loadCells();
+      loadCells();
+      refreshCellsKpi();
     });
 }
 
@@ -265,6 +273,8 @@ function deleteCell(cellId) {
         return;
       }
       loadCells();
+      loadCells();
+      refreshCellsKpi();
     });
 }
 
@@ -573,7 +583,7 @@ document.getElementById("createStockBtn")?.addEventListener("click", () => {
     .then(() => {
       modalAddStock.classList.remove("show");
       loadStock();
-      
+      refreshCellsKpi();
     });
 });
 
@@ -665,10 +675,6 @@ document
     loadProducts();
   });
 
-document.addEventListener("DOMContentLoaded", () => {
-  loadProducts();
-});
-
 // ==========================
 // MOVE STOCK MODAL
 // ==========================
@@ -741,6 +747,7 @@ confirmMoveBtn?.addEventListener("click", async () => {
     from_cell: Number(document.getElementById("moveFromCell").value),
     to_cell: Number(document.getElementById("moveToCell").value),
     quantity: Number(document.getElementById("moveQuantity").value),
+    employee_external_id: localStorage.getItem("employeeId"),
   };
 
   if (
@@ -778,6 +785,6 @@ confirmMoveBtn?.addEventListener("click", async () => {
   if (typeof loadStock === "function") {
     loadStock();
   }
-
+  refreshCellsKpi();
   alert("Товар успешно перемещён");
 });

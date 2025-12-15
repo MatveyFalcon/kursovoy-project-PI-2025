@@ -179,8 +179,8 @@ body.app {
   max-width: var(--container);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--s-5);
-  padding-right: var(--s-5);
+  /*padding-left: var(--s-5);
+  padding-right: var(--s-5);*/
 }
 
 /* Skip link */
@@ -264,7 +264,7 @@ body.app {
 .nav-link {
   font-size: var(--fs-2);
   color: var(--text-2);
-  padding: 10px 12px;
+  padding: 11px 14px;
   border-radius: 12px;
   border: 1px solid transparent;
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
@@ -289,7 +289,7 @@ body.app {
 .ui-user-label {
   font-size: var(--fs-2);
   color: var(--text-2);
-  padding: 8px 10px;
+  padding: 11px 14px;
   border: 1px solid var(--border);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.04);
@@ -530,7 +530,7 @@ body.app {
 
 .btn-primary {
   background: linear-gradient(180deg, #5f98ff 0%, #3d73e8 100%);
-  color: #06080c;
+  color: #ffffff;
   border-color: transparent;
   box-shadow: 0 14px 34px rgba(79, 140, 255, 0.45),
     0 1px 0 rgba(255, 255, 255, 0.4) inset;
@@ -920,6 +920,7 @@ body.app {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text);
   vertical-align: top;
+  text-align: center;
 }
 
 .ui-table tbody tr:hover,

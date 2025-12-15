@@ -127,3 +127,21 @@ function updateAuthUI() {
 }
 
 document.addEventListener("DOMContentLoaded", updateAuthUI);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("userToken");
+
+  const isDashboard = location.pathname.includes("dashboard.html");
+  const isWarehouse = location.pathname.includes("warehouse.html");
+
+  // ❌ Неавторизованный доступ
+  if (!token && (isDashboard || isWarehouse)) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  // ✅ Авторизован — не пускаем на главную
+  if (token && location.pathname.endsWith("index.html")) {
+    window.location.href = "dashboard.html";
+  }
+});
